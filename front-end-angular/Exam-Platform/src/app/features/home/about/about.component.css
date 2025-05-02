@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+*{
+    font-family: "Source Sans 3", sans-serif ;
+
+}
+h2{
+    font-weight: 700;
+    font-size: 40px;
+}
+span{
+    color: rgb(248, 155, 9) ;
+}
+.card-icon{
+    width: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.arrow{
+    width: 50px;
+    position: absolute;
+    left: 20px;
+   bottom: -20px;
+}
+
+.container {
+    position: relative;
+}
+
+.lottie-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.lottie-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.about-cards .card {
+    padding: 17px;
+    position: relative;
+    border-radius: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    z-index: 1; 
+    border: none; 
+    background-color: rgb(239, 239, 239);
+}
+
