@@ -20,6 +20,7 @@ connectToDB();
 
 // Middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -36,6 +37,14 @@ app.use("/questions", questionRoutes);
 app.use("/results", resultRoutes);
 
 app.use(errorHandler);
+
+// 404 Middleware
+app.use((req, res, next) => {
+  res.status(404).json({
+    status: "fail",
+    message: "route not found",
+  });
+});
 
 // Run Server
 const port = process.env.PORT;

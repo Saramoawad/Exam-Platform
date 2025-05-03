@@ -1,7 +1,7 @@
 exports.validation = (schema) => {
     return (req, res, next) => {
       let validationObject = schema.validate(
-        { ...req.body, ...req.params },
+        req.body,
         {
           abortEarly: false,
         }
@@ -9,7 +9,7 @@ exports.validation = (schema) => {
       if (validationObject.error) {
         return res
           .status(422)
-          .json({ status: "fail", message: ValidationObject.error.details });
+          .json({ status: "fail", message: validationObject.error.details });
       } else {
         next();
       }
