@@ -1,7 +1,6 @@
 <div class="exam-container">
     <h2>Take Exam</h2>
     <p>Exam ID: {{ examId }}</p>
-    <img class="exam-icon" src="assets/exam (2).png" alt="">
   
     @if (questions.length === 0) {
       <div class="no-questions">
@@ -12,20 +11,48 @@
     @if (questions.length > 0) {
       @for (question of questions; let i = $index; track question._id) {
         <div class="question-card">
-          <h4>Question {{ i + 1 }}: {{ question.text }}</h4>
+          <h4>Question {{ i + 1 }}: {{ question.question }}</h4>
           <div class="options">
-            @for (option of question.options; track option) {
-              <div class="option">
-                <input
-                  type="radio"
-                  [name]="question._id"
-                  [value]="option"
-                  (change)="onAnswerSelect(question._id, option)"
-                  [checked]="selectedAnswers[question._id] === option"
-                />
-                <label>{{ option }}</label>
-              </div>
-            }
+            <div class="option">
+              <input
+                type="radio"
+                [name]="question._id"
+                value="a"
+                (change)="onAnswerSelect(question._id, 'a')"
+                [checked]="selectedAnswers[question._id] === 'a'"
+              />
+              <label>{{ question.choices.a }}</label>
+            </div>
+            <div class="option">
+              <input
+                type="radio"
+                [name]="question._id"
+                value="b"
+                (change)="onAnswerSelect(question._id, 'b')"
+                [checked]="selectedAnswers[question._id] === 'b'"
+              />
+              <label>{{ question.choices.b }}</label>
+            </div>
+            <div class="option">
+              <input
+                type="radio"
+                [name]="question._id"
+                value="c"
+                (change)="onAnswerSelect(question._id, 'c')"
+                [checked]="selectedAnswers[question._id] === 'c'"
+              />
+              <label>{{ question.choices.c }}</label>
+            </div>
+            <div class="option">
+              <input
+                type="radio"
+                [name]="question._id"
+                value="d"
+                (change)="onAnswerSelect(question._id, 'd')"
+                [checked]="selectedAnswers[question._id] === 'd'"
+              />
+              <label>{{ question.choices.d }}</label>
+            </div>
           </div>
         </div>
       }

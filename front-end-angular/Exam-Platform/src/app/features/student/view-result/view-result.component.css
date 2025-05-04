@@ -1,37 +1,57 @@
 .result-container {
-    max-width: 600px;
-    margin: 50px auto;
     padding: 20px;
-    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   h2 {
+    text-align: center;
     color: #333;
   }
   
-  .result-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .error {
+    color: #dc3545;
+    text-align: center;
   }
   
-  .result-card h3 {
-    margin: 0 0 15px;
-    color: #444;
+  .result-card {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
   }
   
   .result-card p {
+    font-size: 18px;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .result-card h3 {
+    color: #4CAF50;
+    margin-top: 15px;
+  }
+  
+  .answer-item {
+    border: 1px solid #ddd;
+    padding: 10px;
     margin: 10px 0;
-    color: #666;
+    border-radius: 5px;
   }
   
-  .passed {
-    color: #4caf50;
-    font-weight: bold;
+  .back-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: block;
   }
   
-  .failed {
-    color: #f44336;
-    font-weight: bold;
+  .back-btn:hover {
+    background-color: #5a6268;
   }
