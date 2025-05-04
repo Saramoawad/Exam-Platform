@@ -1,0 +1,36 @@
+
+.contact-container {
+  background-color: #297c74;
+  margin: 100px auto;
+  /* text-align: center; */
+}
+
+.contact-container h3 {
+  color: #ff9e00;
+  background-color: #297c74;
+}
+
+.star-img {
+  width: 7%;
+  right: 15px;
+  bottom: 15px;
+}
+
+.arrow-div {
+  top: -10px;
+  right: -10px;
+  outline: white 15px solid;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow-div:hover {
+  /* scale: 1.1; */
+  transform: translate(6%, -6%);
+}
+
+.arrow-div i {
+  rotate: 45deg;
+  color: #ff9e00;
+}

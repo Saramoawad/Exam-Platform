@@ -1,1 +1,234 @@
-<p>register works!</p>
+<div class="container-fluid m-0 p-0">
+  <div class="row m-0 p-0">
+    <div class="col-lg-6 m-0 p-0 position-relative">
+      <img
+        src="half-circle.png"
+        class="img-fluid position-absolute half-circle-img"
+        alt="half-circle"
+      />
+      <img
+        src="half-circle.png"
+        class="img-fluid position-absolute half-circle-img2"
+        alt="half-circle2"
+      />
+      <img
+        src="grid.png"
+        class="img-fluid position-absolute grid-img"
+        alt="grid-img"
+      />
+      <img
+        src="line.png"
+        class="img-fluid position-absolute pink-img"
+        alt="pink-img"
+      />
+      <img
+        src="triangle.png"
+        class="img-fluid position-absolute triangle-img"
+        alt="triangle-img"
+      />
+      <img
+        src="triangle.png"
+        class="img-fluid position-absolute triangle2-img"
+        alt="triangle-img"
+      />
+      <div class="container">
+        <form
+          class="px-5 py-4 rounded-4 m-0"
+          action="/auth/register"
+          method="post"
+          (submit)="onSubmit()"
+          [formGroup]="userForm"
+        >
+          <h1 class="mb-3"><span>Register</span> Form</h1>
+          <div class="mb-1">
+            <label for="exampleInputFirstName1" class="form-label"
+              >First Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputFirstName1"
+              aria-describedby="firstNameHelp"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputLastName1" class="form-label"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputLastName1"
+              aria-describedby="lastNameHelp"
+              formControlName="lastName"
+            />
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputStageLevel1" class="form-label"
+              >Choose your level stage
+            </label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="exampleInputStageLevel1"
+              formControlName="stageLevel"
+            >
+            <option hidden value="-- Select Level Stage --">-- Select Level Stage --</option>
+              <option value="Primary">Primary</option>
+              <option value="Elementary">Elementary</option>
+              <option value="Secondary">Secondary</option>
+              <option value="High School">High School</option>
+              <option value="University">University</option>
+              <option value="Bachelor">Bachelor</option>
+            </select>
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputBirthDate1" class="form-label"
+              >Birthdate</label
+            >
+            <input
+              type="date"
+              class="form-control"
+              id="exampleInputBirthDate1"
+              aria-describedby="birthDateHelp"
+              formControlName="birthDate"
+            />
+
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputUsername1" class="form-label"
+              >Username</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputUsername1"
+              aria-describedby="usernameHelp"
+              formControlName="username"
+            />
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputEmail1" class="form-label"
+              >Email address</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              formControlName="email"
+            />
+          </div>
+          <div class="mb-1">
+            <label for="exampleInputPassword1" class="form-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              formControlName="password"
+            />
+          </div>
+          <p class="form-text">
+            Already have an account ? <a href="/auth/login">Login</a>
+          </p>
+          <button type="submit" class="btn btn-warning text-white">
+            Register
+          </button>
+          <div class="my-2 errors-div" >
+            <div class="alert alert-danger p-2 m-0" *ngIf="userNotValid">
+              <!-- First Name Errors -->
+              <small *ngIf="userForm.controls.firstName.hasError('required')">
+                - First Name is required.
+              </small>
+              <small *ngIf="userForm.controls.firstName.hasError('minlength')">
+                - First Name must be at least 3 characters.
+              </small>
+              <small *ngIf="userForm.controls.firstName.hasError('maxlength')">
+                - First Name must be at most 15 characters.
+              </small>
+              <small *ngIf="userForm.controls.firstName.hasError('pattern')">
+                - First Name must contain only letters.
+              </small>
+
+              <!-- Last Name Errors -->
+              <small *ngIf="userForm.controls.lastName.hasError('required')">
+                - Last Name is required.
+              </small>
+              <small *ngIf="userForm.controls.lastName.hasError('minlength')">
+                - Last Name must be at least 3 characters.
+              </small>
+              <small *ngIf="userForm.controls.lastName.hasError('maxlength')">
+                - Last Name must be at most 15 characters.
+              </small>
+              <small *ngIf="userForm.controls.lastName.hasError('pattern')">
+                - Last Name must contain only letters.
+              </small>
+
+              <!-- Username Errors -->
+              <small *ngIf="userForm.controls.username.hasError('required')">
+                - Username is required.
+              </small>
+              <small *ngIf="userForm.controls.username.hasError('minlength')">
+                - Username must be at least 8 characters.
+              </small>
+              <small *ngIf="userForm.controls.username.hasError('pattern')">
+                - Username must start with a letter and contain only letters and
+                numbers.
+              </small>
+
+              <!-- Email Errors -->
+              <small *ngIf="userForm.controls.email.hasError('required')">
+                - Email is required.
+              </small>
+              <small *ngIf="userForm.controls.email.hasError('pattern')">
+                - Email format is invalid.
+              </small>
+
+              <!-- Password Errors -->
+              <small *ngIf="userForm.controls.password.hasError('required')">
+                - Password is required.
+              </small>
+              <small *ngIf="userForm.controls.password.hasError('pattern')">
+                - Password must be at least 9 characters, start with a letter,
+                and may contain {{ emailSymbol }}&$#%&*_-.
+              </small>
+
+              <!-- Stage Level Errors -->
+              <small *ngIf="userForm.controls.stageLevel.hasError('required')">
+                - Stage Level is required.
+              </small>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-6 p-0 m-0 position-relative">
+      <!-- <p class="position-absolute year-txt fs-4 text-white fw-semibold">EduLearn</p> -->
+      <a
+        class="navbar-brand fw-bold position-absolute year-txt d-flex justify-content-center align-items-center text-white"
+        href="/home"
+      >
+        <img src="books.png" class="img-fluid me-1 img-logo" alt="logo" />
+        <span class="fs-5">Edu</span>Learn</a
+      >
+      <img
+        src="yellow-circle.png"
+        class="img-fluid position-absolute yellow-cirlce"
+        alt="yellow-cirlce"
+      />
+      <img
+        src="blue-circle.png"
+        class="img-fluid position-absolute blue-cirlce"
+        alt="blue-cirlce"
+      />
+      <img
+        src="kid-hand-raising.jpg"
+        class="img-fluid kid-img m-0 p-0"
+        alt="Kids-Hand-Raising"
+      />
+    </div>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 const Exam = require("../models/exam");
+const Question = require("../models/question");
 const { catchAsync } = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 
 exports.getAllExams = catchAsync(async (req, res, next) => {
   const exams = await Exam.find()
-    .populate("user", "firstName lastName")
+    .populate("user", "firstName lastName username")
     .populate("questions");
   if (exams.length == 0) {
     return next(new AppError(404, "No exams found"));
@@ -29,7 +30,7 @@ exports.addExam = catchAsync(async (req, res) => {
 exports.getExamById = catchAsync(async (req, res) => {
   const { id } = req.params;
   let exam = await Exam.findById(id)
-    .populate("user", "firstName lastName")
+    .populate("user", "firstName lastName username")
     .populate("questions");
   if (!exam) {
     return next(new AppError(404, "exam not found"));

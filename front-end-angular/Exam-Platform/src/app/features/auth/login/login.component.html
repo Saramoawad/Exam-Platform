@@ -1,1 +1,73 @@
-<p>login works!</p>
+<div
+  class="container-fluid w-100 d-flex justify-content-center align-items-center bg-light position-relative"
+>
+  <div
+    class="row bg-white rounded-4 justify-content-center align-items-center g-0 w-75"
+  >
+    <div class="bg-warning rounded-top-4 text-center p-2">
+      <a
+        class="navbar-brand fw-bold d-flex justify-content-center align-items-center text-white"
+        href="/home"
+      >
+        <img src="books.png" class="img-fluid me-1 logo-img" alt="logo" />
+        <span class="fs-5">Edu</span>Learn</a
+      >
+    </div>
+    <div class="col-lg-6 text-center">
+      <img src="login2.jpg" class="img-fluid login-img" alt="Login" />
+    </div>
+
+    <div class="col-lg-6">
+      <form class="p-4" [formGroup]="userForm" (submit)="onSubmit()">
+        <h1 class="mb-4"><span>Login</span> Form</h1>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email address</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            formControlName="email"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            formControlName="password"
+          />
+        </div>
+        <p class="form-text">
+          Don't have an account ? <a href="/auth/register">Register</a>
+        </p>
+        <div class="w-100 text-center">
+          <button type="submit" class="btn text-white">Login</button>
+        </div>
+        <div class="my-2 errors-div">
+          <div class="alert alert-danger p-2 m-0" *ngIf="userNotValid">
+            <!-- Email Errors -->
+            <small *ngIf="userForm.controls.email.hasError('required')">
+              - Email is required.
+            </small>
+            <small *ngIf="userForm.controls.email.hasError('pattern')">
+              - Email format is invalid.
+            </small>
+
+            <!-- Password Errors -->
+            <small *ngIf="userForm.controls.password.hasError('required')">
+              - Password is required.
+            </small>
+            <small *ngIf="userForm.controls.password.hasError('pattern')">
+              - Password must be at least 9 characters, start with a letter, and
+              may contain {{ emailSymbol }} $ # % & * _ - .
+            </small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

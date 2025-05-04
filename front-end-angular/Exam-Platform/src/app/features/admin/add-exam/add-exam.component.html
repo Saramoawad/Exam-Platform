@@ -1,0 +1,175 @@
+<div
+  class="container-fluid w-100 d-flex justify-content-center align-items-center bg-light position-relative"
+>
+  <div
+    class="row bg-white rounded-4 justify-content-center align-items-center g-0 w-75"
+  >
+    <div class="col-lg-12">
+      <form class="p-4" [formGroup]="examForm" (submit)="onSubmit()">
+        <h1 class="mb-4"><span>Add</span> Exam</h1>
+        <div class="mb-2">
+          <label for="exampleInputName1" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputName1"
+            aria-describedby="nameHelp"
+            formControlName="name"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputDescription1" class="form-label"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputDescription1"
+            formControlName="description"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputSubject1" class="form-label">Subject</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputSubject1"
+            formControlName="subject"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputImage1" class="form-label">Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="exampleInputImage1"
+            formControlName="image"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputTotalMarks1" class="form-label"
+            >Total Marks</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputTotalMarks1"
+            formControlName="totalMarks"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputPassingMarks1" class="form-label"
+            >Passing Marks</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputPassingMarks1"
+            formControlName="passingMarks"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputLevel1" class="form-label"
+            >Choose exam level
+          </label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="exampleInputLevel1"
+            formControlName="level"
+          >
+          <option hidden value="">-- Select Level --</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputDuration1" class="form-label"
+            >Duration <small class="text-muted">(in minutes)</small></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputDuration1"
+            formControlName="duration"
+          />
+        </div>
+        <div class="mb-2">
+          <label for="exampleInputStageLevel1" class="form-label"
+            >Choose your level stage
+          </label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            id="exampleInputStageLevel1"
+            formControlName="stageLevel"
+          >
+            <option hidden value="">-- Select Level Stage --</option>
+            <option value="Primary">Primary</option>
+            <option value="Elementary">Elementary</option>
+            <option value="Secondary">Secondary</option>
+            <option value="High School">High School</option>
+            <option value="University">University</option>
+            <option value="Bachelor">Bachelor</option>
+          </select>
+        </div>
+        <div class="w-100 text-center">
+          <button type="submit" class="btn text-white mt-3">Add Exam</button>
+        </div>
+        <div class="my-2 errors-div" *ngIf="userNotValid">
+          <div class="alert alert-danger p-2 m-0">
+            <ng-container *ngIf="examForm.invalid">
+              <small *ngIf="examForm.controls.name?.hasError('required')">
+                - Name is required.
+              </small>
+              <small *ngIf="examForm.controls.name?.hasError('minlength')">
+                - Name must be at least 3 characters.
+              </small>
+
+              <small *ngIf="examForm.controls.description?.hasError('required')">
+                - Description is required.
+              </small>
+              <small *ngIf="examForm.controls.description?.hasError('minlength')">
+                - Description must be at least 5 characters.
+              </small>
+
+              <small *ngIf="examForm.controls.subject?.hasError('required')">
+                - Subject is required.
+              </small>
+              <small *ngIf="examForm.controls.subject?.hasError('minlength')">
+                - Subject must be at least 3 characters.
+              </small>
+
+              <small *ngIf="examForm.controls.totalMarks?.hasError('required')">
+                - Total Marks is required.
+              </small>
+              <small *ngIf="examForm.controls.totalMarks?.hasError('min')">
+                - Total Marks must be at least 1.
+              </small>
+
+              <small *ngIf="examForm.controls.passingMarks?.hasError('required')">
+                - Passing Marks is required.
+              </small>
+
+              <small *ngIf="examForm.controls.level?.hasError('required')">
+                - Level is required.
+              </small>
+
+              <small *ngIf="examForm.controls.duration?.hasError('required')">
+                - Duration is required.
+              </small>
+              <small *ngIf="examForm.controls.duration?.hasError('min')">
+                - Duration must be at least 1 minute.
+              </small>
+
+              <small *ngIf="examForm.controls.stageLevel?.hasError('required')">
+                - Stage Level is required.
+              </small>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

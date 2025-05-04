@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/", auth, blockRoles("student"), authController.getAllUsers);
 
-router.post("/", validation(createUserSchema), authController.addUser);
+router.post("/register", validation(createUserSchema), authController.addUser);
 
 router.delete("/:id", auth, authController.deleteUser);
 

@@ -1,1 +1,67 @@
-<p>exam-crud works!</p>
+<div class="container">
+  <div class="row justify-content-center align-content-center card-container">
+    <div class="d-flex justify-content-between align-items-center px-4 mb-3">
+      <h1>Exams</h1>
+      <a class="btn add-btn text-white" href="/teacher/exams/add">Add Exam</a>
+    </div>
+    @for (exam of exams; track $index) {
+    <div class="col-lg-3 col-md-3 col-sm-4 coll">
+      <div class="card-item">
+        <div class="card-link position-relative">
+          <img
+            [src]="apiUrl + exam.image"
+            alt="Card Image"
+            class="card-image img-fluid d-block"
+          />
+          <small class="badge position-absolute">{{ exam.subject }}</small>
+          <p class="main">{{ exam.name }}</p>
+          <h2 class="card-title">
+            {{ exam.description }}
+            <!-- Exam Description: This is math exam and suitable for High School
+            students and it's level is considered medium. -->
+          </h2>
+          <div class="my-3 exam-three">
+            <div
+              class="d-flex justify-content-center align-items-center m-0 p-0"
+            >
+              <p class="text-muted mx-4 my-0 fw-medium">{{ exam.duration }}</p>
+              <p class="text-muted mx-4 my-0 fw-medium">
+                {{ exam.passingMarks }}
+              </p>
+              <p class="text-muted mx-4 my-0 fw-medium">
+                {{ exam.totalMarks }}
+              </p>
+            </div>
+            <div
+              class="d-flex justify-content-center align-items-center m-0 p-0"
+            >
+              <p class="text-muted mx-3 my-0 text-uppercase fw-light">
+                Duration
+              </p>
+              <p class="text-muted mx-3 my-0 text-uppercase fw-light">Pass</p>
+              <p class="text-muted mx-3 my-0 text-uppercase fw-light">Total</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="m-0">
+              <a
+                class="card-button btn btn-warning text-white rounded-start-circle rounded-end-0"
+                [href]="`/teacher/exams/edit/${exam._id}`"
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+              <button
+                class="card-button btn btn-danger rounded-start-0 rounded-end-circle"
+                (click)="deleteExam(exam._id)"
+              >
+                <i class="fa-solid fa-delete-left"></i>
+              </button>
+            </div>
+            <button class="btn custom-btn">{{ exam.user?.username }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

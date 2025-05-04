@@ -33,11 +33,12 @@ const examSchema = mongoose.Schema(
     level: {
       type: String,
       enum: ["easy", "medium", "hard"],
-      required: true
+      required: true,
     },
     duration: {
       type: Number, // write it in minutes
       min: 1,
+      default: 60,
     },
     stageLevel: {
       type: String,
