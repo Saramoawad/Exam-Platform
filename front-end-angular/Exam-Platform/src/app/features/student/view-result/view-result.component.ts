@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-view-result',
+  standalone: true,
   imports: [],
   templateUrl: './view-result.component.html',
-  styleUrl: './view-result.component.css'
+  styleUrls: ['./view-result.component.css']
 })
-export class ViewResultComponent {
+export class ViewResultComponent implements OnInit {
+  result: any = {};
 
+  ngOnInit(): void {
+    this.result = {
+      examTitle: 'Math Exam',
+      score: 85,
+      total: 100,
+      passed: true
+    };
+  }
 }
+

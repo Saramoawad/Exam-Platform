@@ -1,1 +1,14 @@
-<p>view-result works!</p>
+<div class="result-container">
+    <h2>Your Exam Result</h2>
+    <div class="result-card">
+      <h3>{{ result.examTitle }}</h3>
+      <p><strong>Score:</strong> {{ result.score }} / {{ result.total }}</p>
+      <p><strong>Status:</strong> 
+        @if (result.passed) {
+          <span class="passed">Passed</span>
+        } @else {
+          <span class="failed">Failed</span>
+        }
+      </p>
+    </div>
+  </div>

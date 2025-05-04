@@ -1,15 +1,43 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Question } from '../models/question.model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class QuestionService {
-  private baseUrl = 'http://localhost:3000/api/questions';
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
-  createQuestion(examId: string, questionData: any) {
-    return this.http.post(`${this.baseUrl}/${examId}`, questionData);
+  getQuestions(): Observable<{ results: number, data: Question[] }> {
+    return this.http.get<{ results: number, data: Question[] }>(`${this.apiUrl}/questions`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  createQuestion(examId: string, question: Partial<Question>): Observable<Question> {
+    return this.http.post<Question>(`${this.apiUrl}/api/admin/exams/${examId}/questions`, question, {
+      headers: this.getHeaders()
+    });
+  }
+
+  updateQuestion(examId: string, questionId: string, question: Partial<Question>): Observable<Question> {
+    return this.http.patch<Question>(`${this.apiUrl}/api/admin/exams/${examId}/questions/${questionId}`, question, {
+      headers: this.getHeaders()
+    });
+  }
+
+  deleteQuestion(examId: string, questionId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/api/admin/exams/${examId}/questions/${questionId}`, {
+      headers: this.getHeaders()
+    });
   }
 }

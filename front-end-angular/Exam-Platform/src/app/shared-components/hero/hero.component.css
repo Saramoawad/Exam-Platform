@@ -3,6 +3,10 @@
     font-family: "Source Sans 3", sans-serif ;
 
 }
+.container{
+    height: 100vh;
+    position: relative;
+}
 .btn{
    background-color:rgb(248, 155, 9) !important ;
    color: #fff;
@@ -43,7 +47,7 @@ h1{
     font-size:35px;
 }
 .main-pic{
-    width:70%;
+    width:65%;
     position: absolute;
     bottom: 0px;
     right: 10%;

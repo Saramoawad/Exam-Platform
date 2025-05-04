@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-students-results',
+  standalone: true,
   imports: [],
   templateUrl: './students-results.component.html',
-  styleUrl: './students-results.component.css'
+  styleUrls: ['./students-results.component.css']
 })
-export class StudentsResultsComponent {
+export class StudentsResultsComponent implements OnInit {
+  results: any[] = [];
 
+  ngOnInit(): void {
+    this.results = [
+      { studentId: 'student1', examTitle: 'Math Exam', score: 85, total: 100 },
+      { studentId: 'student2', examTitle: 'Science Exam', score: 70, total: 100 }
+    ];
+  }
 }

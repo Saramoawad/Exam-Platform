@@ -1,1 +1,7 @@
-<p>submit-exam works!</p>
+<div class="submit-exam-container">
+    <div class="exam-image"></div>
+    <h2>Exam Submitted</h2>
+    <p>Your exam (ID: {{ examId }}) has been successfully submitted.</p>
+    <p>Thank you for your effort! You can now view your results.</p>
+    <button class="view-results-btn" (click)="goToResults()">View Results</button>
+</div>

@@ -1,1 +1,35 @@
-<p>take-exam works!</p>
+<div class="exam-container">
+    <h2>Take Exam</h2>
+    <p>Exam ID: {{ examId }}</p>
+    <img class="exam-icon" src="assets/exam (2).png" alt="">
+  
+    @if (questions.length === 0) {
+      <div class="no-questions">
+        <p>No questions available for this exam.</p>
+      </div>
+    }
+  
+    @if (questions.length > 0) {
+      @for (question of questions; let i = $index; track question._id) {
+        <div class="question-card">
+          <h4>Question {{ i + 1 }}: {{ question.text }}</h4>
+          <div class="options">
+            @for (option of question.options; track option) {
+              <div class="option">
+                <input
+                  type="radio"
+                  [name]="question._id"
+                  [value]="option"
+                  (change)="onAnswerSelect(question._id, option)"
+                  [checked]="selectedAnswers[question._id] === option"
+                />
+                <label>{{ option }}</label>
+              </div>
+            }
+          </div>
+        </div>
+      }
+  
+      <button class="submit-btn" (click)="onSubmit()">Submit Exam</button>
+    }
+  </div>

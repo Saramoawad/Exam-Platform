@@ -1,1 +1,33 @@
-<p>students-results works!</p>
+<div class="results-container">
+    <img class="boy-img" src="assets/boy.png" alt="">
+    <h2>Students Results</h2>
+  
+    @if (results.length === 0) {
+      <div class="no-results">
+        <p>No results available.</p>
+      </div>
+    }
+  
+    @if (results.length > 0) {
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Exam Title</th>
+            <th>Score</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (result of results; track result.studentId) {
+            <tr>
+              <td>{{ result.studentId }}</td>
+              <td>{{ result.examTitle }}</td>
+              <td>{{ result.score }}</td>
+              <td>{{ result.total }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
