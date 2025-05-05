@@ -1,33 +1,40 @@
-<div class="results-container">
-    <img class="boy-img" src="assets/boy.png" alt="">
-    <h2>Students Results</h2>
-  
-    @if (results.length === 0) {
-      <div class="no-results">
-        <p>No results available.</p>
-      </div>
-    }
-  
-    @if (results.length > 0) {
-      <table class="results-table">
-        <thead>
+<div class="container mt-4">
+  <h2 class="mb-3">Students' Results</h2>
+
+  @if (isLoading()) {
+    <p>Loading...</p>
+  } @else {
+    <table class="table table-bordered table-hover">
+      <thead class="">
+        <tr class="head">
+          <th>#</th>
+          <th>Student</th>
+          <th>Exam</th>
+          <th>Score</th>
+          <th>Passed</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (result of results(); track result._id; let i = $index) {
           <tr>
-            <th>Student ID</th>
-            <th>Exam Title</th>
-            <th>Score</th>
-            <th>Total</th>
+            <td>{{ i + 1 }}</td>
+            <!-- <td>{{ result.studentId['name'] }}</td> -->
+            <!-- <td>{{ result.examId['name'] }}</td> -->
+            <td>{{ result.score }}</td>
+            <td>
+              <span class="badge" [class.bg-success]="result.passed" [class.bg-danger]="!result.passed">
+                {{ result.passed ? 'Yes' : 'No' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteResult(result._id)">
+                Delete
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          @for (result of results; track result.studentId) {
-            <tr>
-              <td>{{ result.studentId }}</td>
-              <td>{{ result.examTitle }}</td>
-              <td>{{ result.score }}</td>
-              <td>{{ result.total }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    }
-  </div>
+        }
+      </tbody>
+    </table>
+  }
+</div>
