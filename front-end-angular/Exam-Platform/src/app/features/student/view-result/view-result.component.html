@@ -1,14 +1,37 @@
 <div class="result-container">
-    <h2>Your Exam Result</h2>
-    <div class="result-card">
-      <h3>{{ result.examTitle }}</h3>
-      <p><strong>Score:</strong> {{ result.score }} / {{ result.total }}</p>
-      <p><strong>Status:</strong> 
-        @if (result.passed) {
-          <span class="passed">Passed</span>
-        } @else {
-          <span class="failed">Failed</span>
-        }
-      </p>
+  <h2 class="result-title">Your Exam Result</h2>
+
+  @if (!result) {
+    <div class="loading">
+      <p>Loading result...</p>
     </div>
-  </div>
+  } @else {
+    <div class="result-card">
+      <div class="result-header">
+        <h3 class="exam-title">{{ result.examId.name }}</h3>
+      </div>
+      <div class="result-details">
+        <p class="score"><strong>Score:</strong> <span>{{ result.score }} / {{ result.answers.length }}</span></p>
+        <p class="status">
+          <strong>Status:</strong>
+          @if (result.passed) {
+            <span class="status-passed">Passed</span>
+          } @else {
+            <span class="status-failed">Failed</span>
+          }
+        </p>
+        <h4 class="answers-title">Answers Breakdown</h4>
+        <ul class="answers-list">
+          @for (answer of result.answers; track answer.questionId) {
+            <li class="answer-item">
+              <strong>Question:</strong> {{ answer.questionId.question }}<br />
+              <strong>Your Answer:</strong> <span class="user-answer">{{ answer.selectedAnswer }}</span><br />
+              <strong>Correct Answer:</strong> <span class="correct-answer">{{ answer.correctAnswer }}</span><br />
+              <strong>Marks:</strong> <span class="marks">{{ answer.marks }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  }
+</div>

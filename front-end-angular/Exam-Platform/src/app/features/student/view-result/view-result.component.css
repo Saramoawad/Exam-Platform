@@ -1,57 +1,129 @@
 .result-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.result-title {
+  color: #297c74;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.result-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 1s ease-in;
+}
+
+.result-header {
+  background: linear-gradient(135deg, #297c74, #1a4d44);
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.exam-title {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+.result-details {
+  padding: 20px;
+}
+
+.score,
+.status,
+.answers-title {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.score span,
+.status span,
+.answers-list .marks {
+  color: #297c74;
+  font-weight: bold;
+}
+
+.status-passed {
+  color: #28a745;
+  background: #e6ffe6;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.status-failed {
+  color: #dc3545;
+  background: #ffe6e6;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.answers-list {
+  list-style: none;
+  padding: 0;
+}
+
+.answer-item {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-left: 5px solid #297c74;
+}
+
+.user-answer {
+  color: #6c757d;
+}
+
+.correct-answer {
+  color: #28a745;
+}
+
+.marks {
+  font-size: 1.1em;
+}
+
+.loading {
+  text-align: center;
+  color: #297c74;
+  font-size: 1.2em;
+  padding: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  h2 {
-    text-align: center;
-    color: #333;
+  to {
+    opacity: 1;
   }
-  
-  .error {
-    color: #dc3545;
-    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .result-title {
+    font-size: 1.8em;
   }
-  
+  .exam-title {
+    font-size: 1.5em;
+  }
   .result-card {
-    background: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    max-width: 100%;
   }
-  
-  .result-card p {
-    font-size: 18px;
-    color: #333;
-    margin: 5px 0;
-  }
-  
-  .result-card h3 {
-    color: #4CAF50;
-    margin-top: 15px;
-  }
-  
   .answer-item {
-    border: 1px solid #ddd;
     padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
   }
-  
-  .back-btn {
-    background-color: #6c757d;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 15px;
-    display: block;
-  }
-  
-  .back-btn:hover {
-    background-color: #5a6268;
-  }
+}
