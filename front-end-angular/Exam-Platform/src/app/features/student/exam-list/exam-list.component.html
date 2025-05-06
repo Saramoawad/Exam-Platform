@@ -1,28 +1,36 @@
 <div class="container">
   <div class="row justify-content-center align-content-center card-container">
     <h1 class="px-4 mb-3">Exams</h1>
-    @for (item of [].constructor(4); track $index) {
-    <div class="col-lg-3 col-md-3 col-sm-4 coll">
+    @for (exam of exams; track exam._id) {
+    <div class="col-lg-3 col-md-6 col-sm-6 coll">
       <div class="card-item">
-        <div class="card-link position-relative">
+        <a
+          [routerLink]="['/student/take-exam/' + exam._id]"
+          class="card-link position-relative"
+        >
           <img
-            src="maths-exam.jpg"
+            [src]="apiUrl + exam.image"
             alt="Card Image"
             class="card-image img-fluid d-block"
           />
-          <small class="badge position-absolute">Maths</small>
-          <p class="main">Shapes Calculation</p>
+          <small class="badge position-absolute">{{ exam.subject }}</small>
+          <p class="main">{{ exam.name }}</p>
           <h2 class="card-title">
-            Exam Description: This is math exam and suitable for High School
-            students and it's level is considered medium.
+            {{ exam.description }}
+            <!-- Exam Description: This is math exam and suitable for High School
+            students and it's level is considered medium. -->
           </h2>
           <div class="my-3 exam-three">
             <div
               class="d-flex justify-content-center align-items-center m-0 p-0"
             >
-              <p class="text-muted mx-4 my-0 fw-medium">60min</p>
-              <p class="text-muted mx-4 my-0 fw-medium">60</p>
-              <p class="text-muted mx-4 my-0 fw-medium">100</p>
+              <p class="text-muted mx-4 my-0 fw-medium">{{ exam.duration }}</p>
+              <p class="text-muted mx-4 my-0 fw-medium">
+                {{ exam.passingMarks }}
+              </p>
+              <p class="text-muted mx-4 my-0 fw-medium">
+                {{ exam.totalMarks }}
+              </p>
             </div>
             <div
               class="d-flex justify-content-center align-items-center m-0 p-0"
@@ -35,12 +43,15 @@
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <a class="card-button" href="">
+            <a
+              class="card-button"
+              [routerLink]="['/student/take-exam/' + exam._id]"
+            >
               <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <button class="btn custom-btn">username</button>
+            <button class="btn custom-btn">{{ exam.user?.username }}</button>
           </div>
-        </div>
+        </a>
       </div>
     </div>
     }

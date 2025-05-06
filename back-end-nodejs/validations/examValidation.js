@@ -4,7 +4,7 @@ const baseExamSchema = joi.object({
   name: joi.string().trim().min(2),
   description: joi.string().min(4),
   subject: joi.string().min(2),
-  image: joi.string(),
+  image: joi.optional(),
   totalMarks: joi.number().default(100),
   passingMarks: joi.number().default(60),
   level: joi.string().valid("easy", "medium", "hard"),
@@ -28,7 +28,7 @@ const createExamSchema = baseExamSchema.fork(
   (schema) => schema.required()
 );
 
-const updateExamSchema = baseExamSchema.min(1);
+const updateExamSchema = baseExamSchema;
 
 module.exports = {
   createExamSchema,

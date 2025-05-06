@@ -18,10 +18,11 @@ import { environment } from '../../../../environments/environment';
 })
 export class EditExamComponent implements OnInit {
   examForm: FormGroup;
-  userNotValid: boolean = false;
+  formNotValid: boolean = false;
   examId!: string;
   existingImageUrl?: string;
   apiUrl = environment.apiUrl;
+  wrong: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -29,15 +30,15 @@ export class EditExamComponent implements OnInit {
     private examService: ExamService
   ) {
     this.examForm = new FormGroup({
-      name: new FormControl('', [Validators.minLength(3)]),
-      description: new FormControl('', [Validators.minLength(5)]),
-      subject: new FormControl('', [Validators.minLength(3)]),
-      image: new FormControl(),
+      name: new FormControl('', [Validators.minLength(3), Validators.required]),
+      description: new FormControl('', [Validators.minLength(5), Validators.required]),
+      subject: new FormControl('', [Validators.minLength(3), Validators.required]),
+      image: new FormControl(''),
       totalMarks: new FormControl(100, [Validators.min(1)]),
       passingMarks: new FormControl(60, [Validators.min(0)]),
-      level: new FormControl(),
+      level: new FormControl('', [Validators.required]),
       duration: new FormControl(60, [Validators.min(1)]),
-      stageLevel: new FormControl(),
+      stageLevel: new FormControl('', [Validators.required]),
     });
   }
 
@@ -46,13 +47,15 @@ export class EditExamComponent implements OnInit {
     if (this.examId) {
       this.examService.getExamById(this.examId).subscribe({
         next: (response) => {
-          if (this.existingImageUrl)
-            this.existingImageUrl = response.data.image;
+          this.existingImageUrl = response.data.image;
+          console.log(`${this.apiUrl}${response.data.image}`);
+          console.log(`${response.data.image}`);
+          console.log(response.data);
           this.examForm.patchValue({
             name: response.data.name || '',
             description: response.data.description || '',
             subject: response.data.subject || '',
-            image: response.data.image || '',
+            // image: response.data.image || '',
             totalMarks: response.data.totalMarks || 100,
             passingMarks: response.data.passingMarks || 60,
             level: response.data.level || '',
@@ -70,17 +73,18 @@ export class EditExamComponent implements OnInit {
   onSubmit() {
     this.examForm.markAllAsTouched();
     if (this.examForm.valid) {
-      this.userNotValid = false;
+      this.formNotValid = false;
       this.examService.editExam(this.examId, this.examForm.value).subscribe({
         next: () => {
-          this.router.navigate(['/teacher/exams']);
+          this.router.navigate(['/teacher/exam']);
         },
         error: (error) => {
+          this.wrong = error.error.message;
           console.error(error);
         },
       });
     } else {
-      this.userNotValid = true;
+      this.formNotValid = true;
     }
   }
 }

@@ -26,7 +26,7 @@ const baseUserSchema = joi
     password: joi
       .string()
       .pattern(new RegExp("^[a-zA-Z][a-zA-Z0-9@$#%&*_-]{8,}$")),
-    birthDate: joi.date(),
+    birthDate: joi.date().optional(),
     role: joi.string().valid("teacher", "student").default("user"),
   })
   .custom((value, helpers) => {
@@ -43,7 +43,7 @@ const createUserSchema = baseUserSchema.fork(
   (schema) => schema.required()
 );
 
-const updateUserSchema = baseUserSchema.min(1);
+const updateUserSchema = baseUserSchema;
 
 module.exports = {
   createUserSchema,

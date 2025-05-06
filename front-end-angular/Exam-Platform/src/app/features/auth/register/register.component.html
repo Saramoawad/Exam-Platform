@@ -34,7 +34,7 @@
       <div class="container">
         <form
           class="px-5 py-4 rounded-4 m-0"
-          action="/auth/register"
+          action="/register"
           method="post"
           (submit)="onSubmit()"
           [formGroup]="userForm"
@@ -74,7 +74,6 @@
               id="exampleInputStageLevel1"
               formControlName="stageLevel"
             >
-            <option hidden value="-- Select Level Stage --">-- Select Level Stage --</option>
               <option value="Primary">Primary</option>
               <option value="Elementary">Elementary</option>
               <option value="Secondary">Secondary</option>
@@ -94,7 +93,6 @@
               aria-describedby="birthDateHelp"
               formControlName="birthDate"
             />
-
           </div>
           <div class="mb-1">
             <label for="exampleInputUsername1" class="form-label"
@@ -132,13 +130,14 @@
             />
           </div>
           <p class="form-text">
-            Already have an account ? <a href="/auth/login">Login</a>
+            Already have an account ?
+            <a [routerLink]="['/auth/login']">Login</a>
           </p>
           <button type="submit" class="btn btn-warning text-white">
             Register
           </button>
-          <div class="my-2 errors-div" >
-            <div class="alert alert-danger p-2 m-0" *ngIf="userNotValid">
+          <div class="my-2 errors-div">
+            <div class="alert alert-danger p-2 m-0" *ngIf="userNotValid && userForm.invalid">
               <!-- First Name Errors -->
               <small *ngIf="userForm.controls.firstName.hasError('required')">
                 - First Name is required.
@@ -209,7 +208,7 @@
       <!-- <p class="position-absolute year-txt fs-4 text-white fw-semibold">EduLearn</p> -->
       <a
         class="navbar-brand fw-bold position-absolute year-txt d-flex justify-content-center align-items-center text-white"
-        href="/home"
+        [routerLink]="['/home']"
       >
         <img src="books.png" class="img-fluid me-1 img-logo" alt="logo" />
         <span class="fs-5">Edu</span>Learn</a

@@ -6,13 +6,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserRegister } from '../../../core/models/user.model';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -52,13 +52,13 @@ export class RegisterComponent {
       Validators.pattern(/^[a-zA-Z][a-zA-Z0-9@$#%&*_-]{8,}$/),
     ]),
     birthDate: new FormControl(''),
-    stageLevel: new FormControl('-- Select Level Stage --', [Validators.required]),
+    stageLevel: new FormControl('', [Validators.required]),
   });
 
   onSubmit() {
     this.userForm.markAllAsTouched();
+    this.userNotValid = false;
     if (this.userForm.valid) {
-      this.userNotValid = false;
       this.authService.register(this.userForm.value as UserRegister).subscribe({
         next: () => {
           this.router.navigate(['/']);

@@ -1,12 +1,12 @@
 import { environment } from './../../../../environments/environment';
 import { ExamService } from './../../../core/services/exam.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Exam } from '../../../core/models/exam.model';
 
 @Component({
   selector: 'app-exam-crud',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './exam-crud.component.html',
   styleUrl: './exam-crud.component.css',
 })
@@ -16,7 +16,6 @@ export class ExamCrudComponent implements OnInit {
   exams!: Exam[];
 
   apiUrl = environment.apiUrl
-
 
   ngOnInit(): void {
     this.examService.getAllExams().subscribe({

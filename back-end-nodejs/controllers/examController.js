@@ -50,8 +50,9 @@ exports.updateExam = catchAsync(async (req, res) => {
     stageLevel,
   } = req.body;
   const image = req.file ? `/uploads/${req.file.filename}` : undefined;
+  console.log(req.body);
   const { id } = req.params;
-  const exam = await Exam.findById(req.params.id);
+  const exam = await Exam.findById(id);
   if (!exam) {
     return next(new AppError(404, "exam not found"));
   }
@@ -64,8 +65,10 @@ exports.updateExam = catchAsync(async (req, res) => {
   exam.level = level || exam.level;
   if (duration !== undefined) exam.duration = duration;
   exam.stageLevel = stageLevel || exam.stageLevel;
-  if (image) exam.image = image;
+  image ? (exam.image = image) : exam.image;
 
+  console.log(req.file)
+  
   await exam.save();
   res.status(200).json({
     status: "success",

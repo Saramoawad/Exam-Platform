@@ -5,7 +5,7 @@
     class="row bg-white rounded-4 justify-content-center align-items-center g-0 w-75"
   >
     <div class="col-lg-12">
-      <form class="p-4" [formGroup]="examForm" (submit)="onSubmit()">
+      <form class="p-4" [formGroup]="examForm" (submit)="onSubmit()" enctype="multipart/form-data">
         <h1 class="mb-4"><span>Edit</span> Exam</h1>
         <div class="mb-2">
           <label for="exampleInputName1" class="form-label">Name</label>
@@ -45,10 +45,16 @@
             id="exampleInputImage1"
             formControlName="image"
           />
-          <div *ngIf="existingImageUrl" class="mt-2">
+          @if(existingImageUrl) {
+          <div class="mt-2">
             <label>Current Image:</label><br />
-            <img [src]="apiUrl + existingImageUrl" alt="Current image" class="img-fluid current-img"/>
+            <img
+              [src]="apiUrl + existingImageUrl"
+              alt="Current image"
+              class="img-fluid current-img"
+            />
           </div>
+          }
         </div>
         <div class="mb-2">
           <label for="exampleInputTotalMarks1" class="form-label"
@@ -82,9 +88,6 @@
             id="exampleInputLevel1"
             formControlName="level"
           >
-            <option hidden value="-- Select Level --">
-              -- Select Level --
-            </option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
@@ -111,9 +114,6 @@
             id="exampleInputStageLevel1"
             formControlName="stageLevel"
           >
-            <option hidden value="-- Select Level Stage --">
-              -- Select Level Stage --
-            </option>
             <option value="Primary">Primary</option>
             <option value="Elementary">Elementary</option>
             <option value="Secondary">Secondary</option>
@@ -125,16 +125,26 @@
         <div class="w-100 text-center">
           <button type="submit" class="btn text-white mt-3">Edit Exam</button>
         </div>
-        <div class="my-2 errors-div" *ngIf="userNotValid && examForm.invalid">
-          <div class="alert alert-danger p-2 m-0">
+        <div class="my-2 errors-div" >
+          <div class="alert alert-danger p-2 m-0" *ngIf="formNotValid && examForm.invalid">
             <!-- <ng-container *ngIf="examForm.errors?.['atLeastOne']">
               <small
                 >- At least one field must be filled to update the exam.</small
               >
             </ng-container> -->
 
+            <small *ngIf="examForm.controls['name']?.hasError('required')">
+              - Name is required.
+            </small>
+
             <small *ngIf="examForm.controls['name']?.hasError('minlength')">
               - Name must be at least 3 characters.
+            </small>
+
+            <small
+              *ngIf="examForm.controls['description']?.hasError('required')"
+            >
+              - Description is required.
             </small>
 
             <small
@@ -143,21 +153,43 @@
               - Description must be at least 5 characters.
             </small>
 
+            <small *ngIf="examForm.controls['subject']?.hasError('required')">
+              - Subject is required.
+            </small>
+
             <small *ngIf="examForm.controls['subject']?.hasError('minlength')">
               - Subject must be at least 3 characters.
             </small>
+
+            <!-- <small *ngIf="examForm.controls['totalMarks']?.hasError('required')">
+              - Total Marks are required.
+            </small> -->
 
             <small *ngIf="examForm.controls['totalMarks']?.hasError('min')">
               - Total Marks must be at least 1.
             </small>
 
+            <!-- <small *ngIf="examForm.controls['passingMarks']?.hasError('required')">
+              - Passing Marks are required.
+            </small> -->
+
             <small *ngIf="examForm.controls['passingMarks']?.hasError('min')">
               - Passing Marks must be 0 or more.
             </small>
 
+            <!-- <small *ngIf="examForm.controls['duration']?.hasError('required')">
+              - Duration is required.
+            </small> -->
+
             <small *ngIf="examForm.controls['duration']?.hasError('min')">
               - Duration must be at least 1 minute.
             </small>
+          </div>
+          <div class="my-2 errors-div">
+            <div class="alert alert-danger p-2 m-0" *ngIf="wrong">
+              <!-- Not Authorized -->
+              <small>- {{ wrong }}</small>
+            </div>
           </div>
         </div>
       </form>

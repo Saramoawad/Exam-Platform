@@ -2,10 +2,12 @@
   <div class="row justify-content-center align-content-center card-container">
     <div class="d-flex justify-content-between align-items-center px-4 mb-3">
       <h1>Exams</h1>
-      <a class="btn add-btn text-white" href="/teacher/exams/add">Add Exam</a>
+      <a class="btn add-btn text-white" [routerLink]="['/teacher/add-exam']"
+        >Add Exam</a
+      >
     </div>
-    @for (exam of exams; track $index) {
-    <div class="col-lg-3 col-md-3 col-sm-4 coll">
+    @for (exam of exams; track exam._id) {
+    <div class="col-lg-3 col-md-6 col-sm-6 coll">
       <div class="card-item">
         <div class="card-link position-relative">
           <img
@@ -46,7 +48,7 @@
             <div class="m-0">
               <a
                 class="card-button btn btn-warning text-white rounded-start-circle rounded-end-0"
-                [href]="`/teacher/exams/edit/${exam._id}`"
+                [routerLink]="['/teacher/edit-exam/' + exam._id]"
               >
                 <i class="fa-solid fa-pen-to-square"></i>
               </a>

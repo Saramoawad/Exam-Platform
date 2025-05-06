@@ -6,13 +6,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserLogin } from '../../../core/models/user.model';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -20,6 +20,8 @@ export class LoginComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
   userNotValid: boolean = false;
+
+  wrong: string = '';
 
   emailSymbol = '@';
 
@@ -38,14 +40,16 @@ export class LoginComponent {
 
   onSubmit() {
     this.userForm.markAllAsTouched();
+    this.wrong = ''
+    this.userNotValid = false;
     if (this.userForm.valid) {
-      this.userNotValid = false;
       this.authService.login(this.userForm.value as UserLogin).subscribe({
         next: (response) => {
-          localStorage.setItem('token', response.message.token);
-          this.router.navigate(['/']);
+            localStorage.setItem('token', response.message.token);
+            this.router.navigate(['/']);
         },
         error: (error) => {
+          this.wrong = error.error.message
           console.log(error);
         },
       });

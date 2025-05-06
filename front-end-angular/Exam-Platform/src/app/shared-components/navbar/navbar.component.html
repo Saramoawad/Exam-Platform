@@ -1,1 +1,78 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand fw-bolder" [routerLink]="['/']">
+      <img src="assets/books.png" class="img-logo" alt="" />
+      <span>Edu</span>Learn</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item ms-5 me-3">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/']"
+            >Home</a
+          >
+        </li>
+        @if (isLoggedIn) { @if (getUserRole == "student") {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/student/exam']"> Exams </a>
+        </li>
+        } @else if (getUserRole == "teacher") {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/teacher/exam']"> Exams </a>
+        </li>
+        } } @else {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/login']"> Exams </a>
+        </li>
+        } @if (isLoggedIn) { @if (getUserRole == "student") {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/student/view-result']">
+            Results
+          </a>
+        </li>
+        } @else if (getUserRole == "teacher") {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/teacher/students-results']">
+            Results
+          </a>
+        </li>
+        } } @else {
+        <li class="nav-item mx-3">
+          <a class="nav-link" [routerLink]="['/login']"> Results </a>
+        </li>
+        }
+
+        <!-- <li class="nav-item mx-3">
+          <a class="nav-link" href="#"> results </a>
+        </li> -->
+        <!-- <li class="nav-item dropdown mx-3">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> -->
+      </ul>
+      @if (isLoggedIn) {
+      <a class="btn btn-success" (click)="onLogout()">logout</a>
+      } @else {
+      <a class="btn btn-success mx-2" [routerLink]="['/register']">Register</a>
+      <a class="btn btn-success mx-2" [routerLink]="['/login']">Login</a>
+      }
+    </div>
+  </div>
+</nav>

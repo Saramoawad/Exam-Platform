@@ -19,7 +19,9 @@ import { NgIf } from '@angular/common';
 export class AddExamComponent {
   constructor(private router: Router, private examService: ExamService) {}
 
-  userNotValid: boolean = false;
+  formNotValid: boolean = false;
+  
+  wrong: string = ''
 
   emailSymbol = '@';
 
@@ -44,19 +46,20 @@ export class AddExamComponent {
   onSubmit() {
     this.examForm.markAllAsTouched();
     if (this.examForm.valid) {
-      this.userNotValid = false;
+      this.formNotValid = false;
       this.examService
         .addExam(this.examForm.value as { status: string; data: Exam })
         .subscribe({
           next: (response) => {
-            this.router.navigate(['/teacher/exams']);
+            this.router.navigate(['/teacher/exam']);
           },
           error: (error) => {
+            this.wrong = error.error.message
             console.log(error);
           },
         });
     } else {
-      this.userNotValid = true;
+      this.formNotValid = true;
     }
   }
 }
