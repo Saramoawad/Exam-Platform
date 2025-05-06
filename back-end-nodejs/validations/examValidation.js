@@ -4,11 +4,11 @@ const baseExamSchema = joi.object({
   name: joi.string().trim().min(2),
   description: joi.string().min(4),
   subject: joi.string().min(2),
-  image: joi.optional(),
+  image: joi.string().allow(null, '').optional(),
   totalMarks: joi.number().default(100),
   passingMarks: joi.number().default(60),
   level: joi.string().valid("easy", "medium", "hard"),
-  duration: joi.number().min(1),
+  duration: joi.number().min(1).default(60),
   stageLevel: joi
     .string()
     .valid(

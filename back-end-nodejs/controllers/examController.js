@@ -19,6 +19,8 @@ exports.getAllExams = catchAsync(async (req, res, next) => {
 exports.addExam = catchAsync(async (req, res) => {
   let newExam = req.body;
   const image = req.file ? `/uploads/${req.file.filename}` : null;
+  console.log(req.file);
+  console.log(req.body);
   let exam = await Exam.create({
     ...newExam,
     image,
@@ -49,8 +51,6 @@ exports.updateExam = catchAsync(async (req, res) => {
     duration,
     stageLevel,
   } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : undefined;
-  console.log(req.body);
   const { id } = req.params;
   const exam = await Exam.findById(id);
   if (!exam) {
@@ -60,15 +60,21 @@ exports.updateExam = catchAsync(async (req, res) => {
   exam.name = name || exam.name;
   exam.description = description || exam.description;
   exam.subject = subject || exam.subject;
-  exam.totalMarks = totalMarks || exam.totalMarks;
-  exam.passingMarks = passingMarks || exam.passingMarks;
+  exam.totalMarks = totalMarks !== undefined ? totalMarks : exam.totalMarks;
+  exam.passingMarks =
+    passingMarks !== undefined ? passingMarks : exam.passingMarks;
   exam.level = level || exam.level;
   if (duration !== undefined) exam.duration = duration;
   exam.stageLevel = stageLevel || exam.stageLevel;
-  image ? (exam.image = image) : exam.image;
 
   console.log(req.file)
-  
+  console.log(req.body)
+  if (req.file) {
+    exam.image = `/uploads/${req.file.filename}`;
+  } else if (req.body.image === undefined || req.body.image === "") {
+    exam.image = exam.image;
+  }
+
   await exam.save();
   res.status(200).json({
     status: "success",
