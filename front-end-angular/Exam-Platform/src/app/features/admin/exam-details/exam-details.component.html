@@ -1,19 +1,18 @@
 <div class="container">
   <div class="row justify-content-center align-content-center card-container">
     <div class="d-flex justify-content-between align-items-center px-4 mb-3">
-      <h1>Exams</h1>
-      <a class="btn add-btn text-white" [routerLink]="['/teacher/add-exam']"
+      <h1>View Exam</h1>
+      <!-- <a class="btn add-btn text-white" [routerLink]="['/teacher/add-exam']"
         >Add Exam</a
-      >
+      > -->
     </div>
-    @for (exam of exams; track exam._id) {
-    <div class="col-lg-3 col-md-6 col-sm-6 coll">
+    <div class="col-lg-12 col-md-12 col-sm-12 coll">
       <div class="card-item">
         <div class="card-link position-relative">
           <div
             class="img-container d-flex justify-content-center align-items-center rounded-4"
           >
-            @if (exam.image == null) {
+          @if (exam.image == null) {
             <img
               src="exam-icon.png"
               alt="Card Image"
@@ -41,33 +40,61 @@
               <div
                 class="d-flex flex-column justify-content-center align-items-center"
               >
-                <p class="text-muted mx-1 my-0 fw-medium">
+                <p class="text-muted mx-3 my-0 fw-medium">
                   {{ exam.duration }}
                 </p>
-                <p class="text-muted mx-1 my-0 text-uppercase fw-light">
+                <p class="text-muted mx-3 my-0 text-uppercase fw-light">
                   Duration
                 </p>
               </div>
               <div
                 class="d-flex flex-column justify-content-center align-items-center"
               >
-                <p class="text-muted mx-1 my-0 fw-medium">
+                <p class="text-muted mx-3 my-0 fw-medium">
                   {{ exam.passingMarks }}
                 </p>
-                <p class="text-muted mx-1 my-0 text-uppercase fw-light">Pass</p>
+                <p class="text-muted mx-3 my-0 text-uppercase fw-light">Pass</p>
               </div>
               <div
                 class="d-flex flex-column justify-content-center align-items-center"
               >
-                <p class="text-muted mx-1 my-0 fw-medium">
+                <p class="text-muted mx-3 my-0 fw-medium">
                   {{ exam.totalMarks }}
                 </p>
-                <p class="text-muted mx-1 my-0 text-uppercase fw-light">
+                <p class="text-muted mx-3 my-0 text-uppercase fw-light">
                   Total
                 </p>
               </div>
             </div>
           </div>
+          <!-- @for (question of exam.questions; track question._id) { -->
+            @for (question of [].constructor(4); track $index) {
+          <div class="questions-div">
+            <div
+              class="alert alert-light d-flex justify-content-between align-items-center"
+            >
+            <div>
+
+              <p class="my-0">Question 1: what is your name?</p>
+              <sub class="text-muted">Created By: {{question.user.username}}</sub>
+            </div>
+              <div class="m-0">
+                <a
+                  class="btn btn-warning text-white rounded-start-2 rounded-end-0"
+                  [routerLink]="['/teacher/edit-question/' + question._id]"
+                >
+                  Edit
+                </a>
+                <button
+                  class="btn btn-danger rounded-start-0 rounded-end-2"
+                  (click)="deleteQuestion(question._id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          }
           <div class="d-flex justify-content-between align-items-center">
             <div class="m-0">
               <a
@@ -77,32 +104,22 @@
                 <i class="fa-solid fa-pen-to-square"></i>
               </a>
               <button
-                class="card-button btn btn-success rounded-0"
-                [routerLink]="['/teacher/exam/' + exam._id]"
-              >
-                <i class="fa-solid fa-eye"></i>
-              </button>
-              <button
                 class="card-button btn btn-danger rounded-start-0 rounded-end-circle"
                 (click)="deleteExam(exam._id)"
               >
                 <i class="fa-solid fa-delete-left"></i>
               </button>
             </div>
+            <a
+              class="btn btn-success text-white rounded-4 add-q-button"
+              [routerLink]="['/teacher/add-question']"
+            >
+              Add Question
+            </a>
             <button class="btn custom-btn">{{ exam.user?.username }}</button>
           </div>
         </div>
       </div>
     </div>
-    } @empty {
-      <div
-      class="d-flex flex-column justify-content-center align-items-center my-4"
-    >
-      <img src="no-exams.png" class="img-fluid no-exams" alt="no-found">
-      <p class="fs-5 text-center my-3 fw-semibold text-muted">
-        No Exams Found!
-      </p>
-    </div>
-    }
   </div>
 </div>

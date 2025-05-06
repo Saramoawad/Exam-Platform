@@ -21,12 +21,12 @@ export class ExamService {
     );
   }
 
-  addExam(exam: any): Observable<{ status: string; data: Exam }> {
-    return this.http.post<{ status: string; data: Exam }>(this.examUrl, exam);
+  addExam(formData: FormData): Observable<{ status: string; data: Exam }> {
+    return this.http.post<{ status: string; data: Exam }>(this.examUrl, formData);
   }
 
-  editExam(examId: string, exam: any) {
-    return this.http.patch(`${this.examUrl}/${examId}`, exam);
+  editExam(examId: string, formData: FormData) {
+    return this.http.patch(`${this.examUrl}/${examId}`, formData);
   }
 
   deleteExam(examId: string) {

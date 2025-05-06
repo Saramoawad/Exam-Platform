@@ -18,6 +18,9 @@ import { StudentsResultsComponent } from './features/admin/students-results/stud
 import { authGuard } from './core/guards/auth.guard';
 import { userGuard } from './core/guards/user.guard';
 import { TakeExamComponent } from './features/student/take-exam/take-exam.component';
+import { ExamDetailsComponent } from './features/admin/exam-details/exam-details.component';
+import { EditQuestionComponent } from './features/admin/question-crud/edit-question/edit-question.component';
+import { AddQuestionComponent } from './features/admin/question-crud/add-question/add-question.component';
 
 export const routes: Routes = [
   {
@@ -60,6 +63,11 @@ export const routes: Routes = [
             canActivate: [authGuard, adminGuard],
           },
           {
+            path: 'exam/:id',
+            component: ExamDetailsComponent,
+            canActivate: [authGuard, adminGuard],
+          },
+          {
             path: 'add-exam',
             component: AddExamComponent,
             canActivate: [authGuard, adminGuard],
@@ -67,6 +75,16 @@ export const routes: Routes = [
           {
             path: 'edit-exam/:id',
             component: EditExamComponent,
+            canActivate: [authGuard, adminGuard],
+          },
+          {
+            path: 'edit-question/:id',
+            component: EditQuestionComponent,
+            canActivate: [authGuard, adminGuard],
+          },
+          {
+            path: 'add-question',
+            component: AddQuestionComponent,
             canActivate: [authGuard, adminGuard],
           },
           {

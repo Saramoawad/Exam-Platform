@@ -17,12 +17,10 @@ export class NavbarComponent {
   }
 
   get isLoggedIn(): boolean {
-    // console.log(this.isLoggedIn)
     return this.authService.isLoggedIn();
   }
 
   get getUserRole(): any {
-  // console.log(this.getUserRole)
     return this.authService.getUserRole();
   }
 

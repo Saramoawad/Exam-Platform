@@ -24,10 +24,25 @@
   transform: translateY(-5px);
 }
 
+.img-container {
+  height: 300px;
+  overflow: hidden;
+  width: 100%;
+}
+
 .card-link .card-image {
-  border-radius: 10px;
+  height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.add-q-button {
+ background-color: #297c74;
+ transition: 0.3s;
+}
+
+.add-q-button:hover {
+ background-color: #329389;
 }
 
 .card-link .main {
@@ -98,8 +113,4 @@
 
 .coll {
   margin: 15px 0;
-}
-
-.no-exams {
-  width: 20%;
 }
