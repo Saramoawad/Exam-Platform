@@ -1,2 +1,6 @@
-export interface User {
+export interface UserRegister {
+
+}
+export interface UserLogin {
+ 
 }

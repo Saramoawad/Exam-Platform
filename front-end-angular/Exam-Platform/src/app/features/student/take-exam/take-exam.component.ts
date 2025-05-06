@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from '../../../core/services/question.service';
-import { Observable } from 'rxjs';
 import { Question } from '../../../core/models/question.model';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +16,11 @@ export class TakeExamComponent implements OnInit {
   questions: Question[] = []; 
   selectedAnswers: { [key: string]: string } = {};
 
-  constructor(private route: ActivatedRoute, private questionService: QuestionService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private questionService: QuestionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.examId = this.route.snapshot.paramMap.get('examId') || '';
@@ -41,6 +44,9 @@ export class TakeExamComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Selected Answers:', this.selectedAnswers);
+    // Save selected answers to localStorage
+    localStorage.setItem(`exam-${this.examId}-answers`, JSON.stringify(this.selectedAnswers));
+    // Navigate to SubmitExamComponent
+    this.router.navigate(['/student/submit-exam', this.examId]);
   }
 }

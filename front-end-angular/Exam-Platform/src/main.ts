@@ -1,48 +1,40 @@
 // import { bootstrapApplication } from '@angular/platform-browser';
-// import { provideAnimations } from '@angular/platform-browser/animations';
-// import { provideLottieOptions } from 'ngx-lottie';
-
-// import player from 'lottie-web';
-// import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-// import { importProvidersFrom } from '@angular/core';
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { QuestionService } from './app/core/services/question.service';
+// import { appConfig } from './app/app.config';
 // import { AppComponent } from './app/app.component';
-// import { provideRouter } from '@angular/router';
-// import { routes } from './app/app.routes';
-// import { FormsModule } from '@angular/forms';
-// bootstrapApplication(AppComponent, {
-//   providers: [
-//     provideAnimations(),
-//     provideLottieOptions({ player: () => player }),
-//     provideHttpClient(withInterceptorsFromDi()),
-//     importProvidersFrom(ReactiveFormsModule),
-//     { provide: QuestionService, useClass: QuestionService },
-//     provideRouter( routes ),
-//     provideHttpClient(),
-    
-//   ]
-// });
+
+// bootstrapApplication(AppComponent, appConfig)
+//   .catch((err) => console.error(err));
 
 
 
-import { bootstrapApplication } from '@angular/platform-browser';
+
+// ---
+
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
+
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
+import { authInterceptor } from './app/core/interceptors/auth.interceptor';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideAnimations(),
-    provideLottieOptions({ player: () => player }),
-    provideHttpClient(withInterceptorsFromDi()), 
-    provideRouter(routes),
-    importProvidersFrom(ReactiveFormsModule, FormsModule), 
-  ]
-}).catch(err => console.error(err));
+import { importProvidersFrom } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
+bootstrapApplication(
+  AppComponent,
+    {
+    providers: [
+      provideAnimations(),
+      provideLottieOptions({ player: () => player }),
+      provideHttpClient(withInterceptors([authInterceptor])),
+      provideRouter(routes),
+      importProvidersFrom(ReactiveFormsModule, FormsModule),
+    ]
+  }
+).catch((err) => console.error(err));

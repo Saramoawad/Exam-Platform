@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ResultService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3000/results';
+  private baseUrl = 'http://localhost:8000/results';
 
   getAllResults(): Observable<Result[]> {
     return this.http.get<Result[]>(this.baseUrl);

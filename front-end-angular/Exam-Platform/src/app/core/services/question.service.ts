@@ -8,7 +8,7 @@ import { Question } from '../models/question.model';
 })
 export class QuestionService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:8000';
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -61,7 +61,7 @@ export class QuestionService {
 
   submitExam(examId: string, answers: { questionId: string, answer: string }[]): Observable<{ status: string, data: { message: string, submissionId: string } }> {
     return this.http.post<{ status: string, data: { message: string, submissionId: string } }>(
-      `${this.apiUrl}/questions/${examId}/submit`,
+      `${this.apiUrl}/${examId}/submit`,
       { answers },
       { headers: this.getHeaders() }
     );

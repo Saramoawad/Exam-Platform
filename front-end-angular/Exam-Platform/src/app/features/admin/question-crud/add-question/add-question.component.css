@@ -1,0 +1,130 @@
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .edit-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .edit-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, rgb(45, 125, 118), #66a6ff);
+  }
+  
+  .edit-form-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  .edit-question-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: rgb(45, 125, 118);
+    background: #fff;
+    box-shadow: 0 0 5px rgba(45, 125, 118, 0.2);
+  }
+  
+  .choices-group {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .choice-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .choice-input span {
+    font-weight: 500;
+    color: #333;
+    width: 20px;
+  }
+  
+  .form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .save-btn,
+  .cancel-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .save-btn {
+    background: linear-gradient(90deg, rgb(45, 125, 118), #66a6ff);
+    color: white;
+  }
+  
+  .save-btn:hover {
+    background: linear-gradient(90deg, #66a6ff, rgb(45, 125, 118));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(45, 125, 118, 0.3);
+  }
+  
+  .cancel-btn {
+    background: #e0e0e0;
+    color: #333;
+  }
+  
+  .cancel-btn:hover {
+    background: #d0d0d0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }

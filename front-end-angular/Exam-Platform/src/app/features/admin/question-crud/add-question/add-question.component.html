@@ -1,0 +1,65 @@
+<div class="edit-form-container">
+    <h2>Add New Question</h2>
+    <form class="edit-question-form">
+      <div class="form-group">
+        <label for="question-text">Question Text:</label>
+        <input id="question-text" type="text" [(ngModel)]="currentQuestion.question" name="question" placeholder="Enter question text" required />
+      </div>
+      <div class="form-group choices-group">
+        <label>Choices:</label>
+        <div class="choice-input">
+          <span>A:</span>
+          <input type="text" [(ngModel)]="currentQuestion.choices!.a" name="choiceA" placeholder="Choice A" required />
+        </div>
+        <div class="choice-input">
+          <span>B:</span>
+          <input type="text" [(ngModel)]="currentQuestion.choices!.b" name="choiceB" placeholder="Choice B" required />
+        </div>
+        <div class="choice-input">
+          <span>C:</span>
+          <input type="text" [(ngModel)]="currentQuestion.choices!.c" name="choiceC" placeholder="Choice C" required />
+        </div>
+        <div class="choice-input">
+          <span>D:</span>
+          <input type="text" [(ngModel)]="currentQuestion.choices!.d" name="choiceD" placeholder="Choice D" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="correct-answer">Correct Answer:</label>
+        <select id="correct-answer" [(ngModel)]="currentQuestion.correctAnswer" name="correctAnswer">
+          <option value="a">A</option>
+          <option value="b">B</option>
+          <option value="c">C</option>
+          <option value="d">D</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="difficulty">Difficulty (1-3):</label>
+        <input id="difficulty" type="number" [(ngModel)]="currentQuestion.difficulty" name="difficulty" min="1" max="3" />
+      </div>
+      <div class="form-group">
+        <label for="marks">Marks:</label>
+        <input id="marks" type="number" [(ngModel)]="currentQuestion.marks" name="marks" min="1" />
+      </div>
+      <div class="form-group">
+        <label for="exam-id">Exam ID:</label>
+        <input id="exam-id" type="text" [(ngModel)]="currentQuestion.exam!._id" name="examId" placeholder="Enter Exam ID" required />
+      </div>
+      <div class="form-group">
+        <label for="exam-title">Exam Title:</label>
+        <input id="exam-title" type="text" [(ngModel)]="currentQuestion.exam!.title" name="examTitle" placeholder="Enter Exam Title" />
+      </div>
+      <div class="form-group">
+        <label for="user-id">User ID:</label>
+        <input id="user-id" type="text" [(ngModel)]="currentQuestion.user!._id" name="userId" placeholder="Enter User ID" required />
+      </div>
+      <div class="form-group">
+        <label for="user-name">User Name:</label>
+        <input id="user-name" type="text" [(ngModel)]="currentQuestion.user!.name" name="userName" placeholder="Enter User Name" />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="save-btn" (click)="saveQuestion()">Save</button>
+        <button type="button" class="cancel-btn" (click)="cancelForm()">Cancel</button>
+      </div>
+    </form>
+  </div>

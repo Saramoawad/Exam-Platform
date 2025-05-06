@@ -3,6 +3,7 @@ import { QuestionService } from '../../../core/services/question.service';
 import { Question } from '../../../core/models/question.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-crud',
@@ -13,19 +14,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class QuestionCrudComponent implements OnInit {
   questions: Question[] = [];
-  isFormVisible = false;
-  isEditing = false;
-  currentQuestion: Partial<Question> = {
-    question: '',
-    choices: { a: '', b: '', c: '', d: '' },
-    correctAnswer: 'a',
-    difficulty: 1,
-    marks: 10,
-    exam: { _id: '', title: '' }, 
-  user: { _id: '', name: '' } 
-  };
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadQuestions();
@@ -48,52 +41,11 @@ export class QuestionCrudComponent implements OnInit {
   }
 
   showCreateForm(): void {
-    this.isFormVisible = true;
-    this.isEditing = false;
-    this.currentQuestion = {
-      question: '',
-      choices: { a: '', b: '', c: '', d: '' },
-      correctAnswer: 'a',
-      difficulty: 1,
-      marks: 10,
-      exam: { _id: '', title: '' },
-      user: { _id: '', name: '' } 
-    };
+    this.router.navigate(['/teacher/add-question']);
   }
 
   showEditForm(question: Question): void {
-    this.isFormVisible = true;
-    this.isEditing = true;
-    this.currentQuestion = { ...question };
-  }
-
-  cancelForm(): void {
-    this.isFormVisible = false;
-    this.isEditing = false;
-  }
-
-  saveQuestion(): void {
-    if (this.isEditing && this.currentQuestion._id) {
-      this.questionService.updateQuestion(this.currentQuestion._id, this.currentQuestion).subscribe({
-        next: (response) => {
-          if (response.status === 'success') {
-            this.loadQuestions();
-            this.isFormVisible = false;
-          }
-        },
-        error: (err) => console.error('Error updating question:', err)
-      });
-    } else {
-      this.questionService.createQuestion(this.currentQuestion).subscribe({
-        next: (response) => {
-          if (response.status === 'success') {
-            this.loadQuestions();
-            this.isFormVisible = false;
-          }
-        },
-        error: (err) => console.error('Error creating question:', err)
-      });
-    }
+    this.router.navigate(['/teacher/edit-question', question._id]);
   }
 
   deleteQuestion(id: string): void {

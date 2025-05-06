@@ -1,4 +1,4 @@
-import { User } from './user.model';
+import { UserRegister } from './user.model';
 import { Exam } from './exam.model';
 import { Question } from './question.model';
 
@@ -11,7 +11,7 @@ export interface Answer {
 
 export interface Result {
   _id: string;
-  studentId: User | string;
+  studentId: UserRegister | string;
   examId: Exam | string;
   score: number;
   passed: boolean;

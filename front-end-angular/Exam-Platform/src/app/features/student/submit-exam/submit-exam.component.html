@@ -1,4 +1,8 @@
 <div class="submit-container">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-multiple" [fullScreen]="true" *ngIf="isLoading">
+      <p style="color: white">Submitting...</p>
+    </ngx-spinner>
+  
     <h2>Submit Exam</h2>
     <p>Exam ID: {{ examId }}</p>
   

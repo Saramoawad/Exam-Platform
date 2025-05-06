@@ -20,11 +20,12 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-              "assets": [
-                "src/favicon.ico",
-                "src/assets"
-              ],
-              
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets"
+              }
+            ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
@@ -83,7 +84,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets"
               }
             ],
             "styles": [

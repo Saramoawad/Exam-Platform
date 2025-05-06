@@ -1,40 +1,40 @@
 <div class="container mt-4">
-  <h2 class="mb-3">Students' Results</h2>
-
-  @if (isLoading()) {
-    <p>Loading...</p>
-  } @else {
-    <table class="table table-bordered table-hover">
-      <thead class="">
-        <tr class="head">
-          <th>#</th>
-          <th>Student</th>
-          <th>Exam</th>
-          <th>Score</th>
-          <th>Passed</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (result of results(); track result._id; let i = $index) {
-          <tr>
-            <td>{{ i + 1 }}</td>
-            <!-- <td>{{ result.studentId['name'] }}</td> -->
-            <!-- <td>{{ result.examId['name'] }}</td> -->
-            <td>{{ result.score }}</td>
-            <td>
-              <span class="badge" [class.bg-success]="result.passed" [class.bg-danger]="!result.passed">
-                {{ result.passed ? 'Yes' : 'No' }}
-              </span>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-danger" (click)="deleteResult(result._id)">
-                Delete
-              </button>
-            </td>
+    <h2 class="mb-3">Students' Results</h2>
+  
+    @if (isLoading()) {
+      <p>Loading...</p>
+    } @else {
+      <table class="table table-bordered table-hover">
+        <thead class="">
+          <tr class="head">
+            <th>#</th>
+            <th>Student</th>
+            <th>Exam</th>
+            <th>Score</th>
+            <th>Passed</th>
+            <th>Actions</th>
           </tr>
-        }
-      </tbody>
-    </table>
-  }
-</div>
+        </thead>
+        <tbody>
+          @for (result of results(); track result._id; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <!-- <td>{{ result.studentId['name'] }}</td> -->
+              <!-- <td>{{ result.examId['name'] }}</td> -->
+              <td>{{ result.score }}</td>
+              <td>
+                <span class="badge" [class.bg-success]="result.passed" [class.bg-danger]="!result.passed">
+                  {{ result.passed ? 'Yes' : 'No' }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="deleteResult(result._id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>

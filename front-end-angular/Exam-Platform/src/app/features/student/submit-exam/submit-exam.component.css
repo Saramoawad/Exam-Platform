@@ -1,70 +1,41 @@
 .submit-container {
     padding: 20px;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
-  }
-  
-  h2 {
     text-align: center;
-    color: #333;
   }
   
-  .confirmation-card {
+  .confirmation-card, .result-card {
     background: #fff;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
   }
   
-  .confirmation-card p {
-    font-size: 18px;
-    color: #555;
+  .submit-btn, .back-btn, .view-result-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
   
   .submit-btn {
-    background-color: #007BFF;
+    background-color: #4CAF50;
     color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
   }
   
-  .submit-btn:hover {
-    background-color: #0056b3;
+  .submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
   }
   
-  .result-card {
-    background: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .result-card h3 {
-    color: #4CAF50;
-  }
-  
-  .result-card p {
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .back-btn {
-    background-color: #6c757d;
+  .back-btn, .view-result-btn {
+    background-color: #f44336;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
   }
   
-  .back-btn:hover {
-    background-color: #5a6268;
+  .back-btn:hover, .view-result-btn:hover {
+    background-color: #d32f2f;
   }
