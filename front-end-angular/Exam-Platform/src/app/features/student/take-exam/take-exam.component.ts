@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TakeExamComponent implements OnInit {
   examId: string = '';
-  questions: Question[] = []; 
+  questions: Question[] = [];
   selectedAnswers: { [key: string]: string } = {};
 
   constructor(
@@ -23,11 +23,12 @@ export class TakeExamComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.examId = this.route.snapshot.paramMap.get('examId') || '';
+    this.examId = this.route.snapshot.paramMap.get('id') || '';
+    console.log(this.examId)
     this.questionService.getQuestions(this.examId).subscribe({
       next: (response) => {
         if (response.status === 'success' && response.data) {
-          this.questions = response.data; 
+          this.questions = response.data;
         } else {
           this.questions = [];
         }
@@ -47,6 +48,6 @@ export class TakeExamComponent implements OnInit {
     // Save selected answers to localStorage
     localStorage.setItem(`exam-${this.examId}-answers`, JSON.stringify(this.selectedAnswers));
     // Navigate to SubmitExamComponent
-    this.router.navigate(['/student/submit-exam', this.examId]);
+    this.router.navigate(['/student/submit-exam/', this.examId]);
   }
 }

@@ -1,4 +1,5 @@
 
+
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from '../../../core/services/question.service';
@@ -30,7 +31,7 @@ export class SubmitExamComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.examId = this.route.snapshot.paramMap.get('examId') || '';
+    this.examId = this.route.snapshot.paramMap.get('id') || '';
     const storedAnswers = localStorage.getItem(`exam-${this.examId}-answers`);
     if (storedAnswers) {
       this.selectedAnswers = JSON.parse(storedAnswers);
@@ -58,8 +59,9 @@ export class SubmitExamComponent implements OnInit {
 
     const answersArray = Object.keys(this.selectedAnswers).map(questionId => ({
       questionId,
-      answer: this.selectedAnswers[questionId]
+      answer: this.selectedAnswers[questionId] 
     }));
+
 
     this.questionService.submitExam(this.examId, answersArray).subscribe({
       next: (response: { status: string, data: { message: string, submissionId: string } }) => {
@@ -68,7 +70,7 @@ export class SubmitExamComponent implements OnInit {
           this.message = response.data.message;
           this.submissionId = response.data.submissionId;
           // Clear answers from localStorage after submission
-          localStorage.removeItem(`exam-${this.examId}-answers`);
+          // localStorage.removeItem(`exam-${this.examId}-answers`);
         }
       },
       error: (err) => {

@@ -20,13 +20,10 @@ export class ViewResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.submissionId = this.route.snapshot.paramMap.get('submissionId') || '';
-    console.log('Submission ID:', this.submissionId); // Debug
-
+    this.submissionId = this.route.snapshot.paramMap.get('id') || '';
     if (this.submissionId) {
       this.resultService.getResultById(this.submissionId).subscribe({
         next: (result) => {
-          console.log('Result:', result); // Debug
           this.result = result;
         },
         error: (err) => {
@@ -34,8 +31,6 @@ export class ViewResultComponent implements OnInit {
           this.result = null;
         }
       });
-    } else {
-      console.error('No submission ID provided');
     }
   }
 }
