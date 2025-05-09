@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand fw-bolder" [routerLink]="['/']">
+      <img src="books.png" class="img-logo" alt="" />
+      <span>Edu</span>Learn</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item ms-5 me-3">
+          <a class="nav-link active fw-bold" aria-current="page" [routerLink]="['/']"
+            >Home</a
+          >
+        </li>
+        @if (isLoggedIn) { @if (getUserRole == "student") {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/student/exam']"> Exams </a>
+        </li>
+        } @else if (getUserRole == "teacher") {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/teacher/exam']"> Exams </a>
+        </li>
+        } } @else {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/login']"> Exams </a>
+        </li>
+        } @if (isLoggedIn) { @if (getUserRole == "student") {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/student/view-all-results']">
+            Results
+          </a>
+        </li>
+        } @else if (getUserRole == "teacher") {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/teacher/students-results']">
+            Results
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/teacher/question-crud']">
+            Questions
+          </a>
+        </li>
+        } } @else {
+        <li class="nav-item mx-3">
+          <a class="nav-link fw-bold" [routerLink]="['/login']"> Results </a>
+        </li>
+        }
+      </ul>
+      @if (isLoggedIn) {
+      <a class="btn btn-success" (click)="onLogout()">logout</a>
+      } @else {
+      <a class="btn btn-success mx-2" [routerLink]="['/register']">Register</a>
+      <a class="btn btn-success mx-2" [routerLink]="['/login']">Login</a>
+      }
+    </div>
+  </div>
+</nav>

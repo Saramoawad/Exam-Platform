@@ -1,0 +1,53 @@
+
+  <div class="crud-container">
+    <img class="boy-img" src="boy.png" alt="">
+    <h2>Manage Questions</h2>
+
+
+    @if (questions.length === 0) {
+      <div class="no-questions">
+        <p>No questions available.</p>
+      </div>
+    }
+
+    @if (questions.length > 0) {
+      <table class="question-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>Choices</th>
+            <th>Correct Answer</th>
+            <th>Difficulty</th>
+            <th>Exam Name</th>
+            <!-- <th>Exam</th>
+            <th>User</th> -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (question of questions; let i = $index; track question._id) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ question.question }}</td>
+              <td>
+                a: {{ question.choices.a }}<br />
+                b: {{ question.choices.b }}<br />
+                c: {{ question.choices.c }}<br />
+                d: {{ question.choices.d }}
+              </td>
+              <td>{{ question.correctAnswer }}</td>
+              <td>{{ question.difficulty || 'N/A' }}</td>
+              <td>{{ question.exam.name }}</td>
+              <!-- <td>{{ question.exam?.name || 'N/A' }}</td>
+              <td>{{ question.user?.username || 'N/A' }}</td> -->
+              <td>
+                <button class="edit-btn" (click)="showEditForm(question)">Edit</button>
+                <button class="delete-btn" (click)="deleteQuestion(question._id)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+*{
+    font-family: "Source Sans 3", sans-serif ;
+
+}
+.container{
+
+  margin-bottom: 50px;
+    position: relative;
+}
+.btn{
+   background-color:rgb(248, 155, 9) !important ;
+   color: #fff;
+   border-bottom-right-radius: 0px !important;
+   border-top-right-radius: 17px ;
+   border-bottom-left-radius: 17px;
+   border-top-left-radius: 17px;
+   padding: 10px 50px;
+   font-weight: 500;
+
+}
+h1{
+    font-size: 47px;
+    font-weight: 600;
+
+}
+.card-one,.card-two{
+
+    margin-top: 5px;
+    /* background-color: rgb(239, 239, 239); */
+    background-color: rgba(45, 125, 118);
+    border-radius: 15px;
+    width: 200px;
+    margin-left: 20px;
+    padding: 10px;
+
+
+}
+.card-one{
+    margin-top: 30px;
+    margin-left: 90px;
+}
+.num{
+    margin-left:50%;
+    margin-top: 40px;
+    color: rgb(248, 155, 9);
+    font-weight: 500;
+    font-size:35px;
+}
+.main-pic{
+    /* width:55%; */
+    height: 80%;
+    position: absolute;
+    bottom: 0px;
+    right: 10%;
+}
+.sub-pic{
+   left: -180px;
+   bottom: 0;
+   width: 65%;
+}
+.green{
+    background-color:rgb(45, 125, 118) ;
+    border-radius:25px;
+    height:120px;
+
+}
+.mid,.btm{
+    background-color: rgb(45, 125, 118);
+    border-radius: 25px;
+    margin-top: 10px;
+    height:151px;
+}
+.bag-img{
+    width: 50px;
+    margin: 20px;
+}
+.book{
+    width: 50px;
+    margin-left: 10%;
+}
+.pen-t{
+    width: 50px;
+    margin-left: 60%;
+    margin-top: 30px;
+}

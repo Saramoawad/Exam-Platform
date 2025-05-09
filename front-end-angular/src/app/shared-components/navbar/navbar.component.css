@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+*{
+    font-family: "Source Sans 3", sans-serif ;
+
+}
+.img-logo{
+
+    width: 60px;
+}
+.navbar-brand span{
+    color:rgb(248, 155, 9) !important;
+
+}
+nav{
+    box-shadow: 0px 0px 5px rgb(248, 155, 9);
+}
+.btn{
+    background-color: rgb(45, 125, 118);
+    padding: 10px 30px;
+    border-radius: 15px;
+}

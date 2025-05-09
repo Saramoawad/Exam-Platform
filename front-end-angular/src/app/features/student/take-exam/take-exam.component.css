@@ -1,0 +1,81 @@
+.exam-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position:relative;
+  }
+ .exam-icon{
+    position: absolute;
+    top:40px;
+    left: 25%;
+    width: 70px;
+
+ }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  p {
+    text-align: center;
+    color: #666;
+  }
+  
+  .no-questions {
+    text-align: center;
+    color: #888;
+  }
+  
+  .question-card {
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question-card h4 {
+    margin: 0 0 10px;
+    color: #444;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .option input[type="radio"] {
+    margin: 0;
+  }
+  
+  .option label {
+    color: #555;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: rgb(45, 125, 118);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #e68900;
+  }

@@ -1,0 +1,82 @@
+.container-margin {
+  margin: 100px auto;
+}
+
+/* .details-container {
+  margin-top: 90px;
+} */
+
+.person-img {
+  left: -10px;
+  top: -10px;
+  height: 35%;
+  outline: white 15px solid;
+}
+
+.muted-details {
+  padding: 0 62px;
+}
+
+.pic1 {
+  width: 35%;
+  top: 25%;
+  left: 30%;
+  z-index: -1;
+}
+
+.pic2 {
+  bottom: -60px;
+  right: 0px;
+  width: 30%;
+  z-index: -1;
+}
+
+.person-div * {
+  padding-left: 45%;
+  padding-bottom: 0px;
+}
+
+.person-div i {
+  padding-left: 3px;
+}
+
+.back1 {
+  left: 30px;
+  width: 45%;
+  padding: 0;
+}
+
+.back2 {
+  right: 100px;
+  top: -5px;
+  width: 45%;
+  padding: 0;
+}
+
+.back3 {
+  left: 25%;
+  bottom: 7%;
+  width: 13%;
+  padding: 0;
+}
+
+.back4 {
+  right: 30%;
+  width: 13%;
+  bottom: 6%;
+  padding: 0;
+}
+
+.col-animate {
+  transition: 0.3s;
+  img {
+    transition: 0.3s;
+  }
+}
+
+.col-animate:hover {
+  img {
+    scale: 1.05;
+  }
+  scale: 1.02;
+}

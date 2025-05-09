@@ -1,0 +1,70 @@
+<div class="container container-margin">
+  <div class="row">
+    <div class="col-lg-6 col-md-12 col-sm-12 position-relative">
+      <h1 class="display-4 fw-semibold">
+        What Our Lovely <br />
+        Clients Say
+      </h1>
+      <img
+        src="pic1.png"
+        class="img-fluid position-absolute pic1 d-none d-lg-block"
+        alt="Small-Design"
+      />
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 position-relative">
+      <p class="py-1 text-muted muted-details">
+        We recently heard from Haining Wei, who started teaching with Swing in
+        the spring of 2022. Below, she shares her story of how she was able to
+        get into the classroom quickly.
+      </p>
+      <img
+        src="small-waves-green.gif"
+        class="img-fluid position-absolute pic2 d-none d-lg-block"
+        alt="Small-Design"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container my-5 container-margin">
+  <div class="row g-5 position-relative">
+    <img
+      src="back3.jpg"
+      class="position-absolute img-fluid d-none d-lg-block back3"
+      alt=""
+    />
+    <img
+      src="back4.jpg"
+      class="position-absolute img-fluid d-none d-lg-block back4"
+      alt=""
+    />
+    @for (section of sections; track $index) {
+
+    <div class="col-lg-4 col-md-12 col-sm-12 col-animate">
+      <div class="position-relative w-100 h-100">
+        <img
+          [src]="section.image"
+          class="img-fluid position-absolute rounded-4 person-img d-none d-lg-block"
+          [alt]="section.name"
+        />
+        <div class="bg-light rounded-top-4 px-4 pt-4 pb-1 person-div">
+          <h5 class="fw-bold mb-2 text-end">{{ section.name }}</h5>
+          <p class="mb-2 text-end small">{{ section.position }}</p>
+          <p class="text-end">
+            @for (item of [].constructor(5); track $index) {
+            <i class="fa-solid fa-star text-warning fs-5 d-inline"></i>
+            }
+          </p>
+        </div>
+        <div class="bg-light rounded-bottom-4 p-4 details-div">
+          <!-- <div class="details-container"> -->
+          <p>
+            {{ section.details }}
+          </p>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

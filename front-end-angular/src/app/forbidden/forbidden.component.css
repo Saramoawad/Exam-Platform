@@ -1,0 +1,16 @@
+.btn {
+  background-color: #fbb03b;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: rgb(251, 197, 1);
+}
+
+h1 {
+  color: #10302d;
+}
+
+.forbidden-img {
+  width: 200px;
+}

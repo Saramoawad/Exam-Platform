@@ -1,0 +1,49 @@
+<div class="container my-5">
+    <h2 class="mb-3">Students' Results</h2>
+
+    @if (isLoading()) {
+      <p>Loading...</p>
+    } @else {
+      <table class="table table-bordered table-hover">
+        <thead class="">
+          <tr class="head">
+            <th>#</th>
+            <th>Student</th>
+            <th>Exam</th>
+            <th>Score</th>
+            <th>Passed</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (result of results; track result._id; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ result.studentId.username }}</td>
+              <td>{{ result.examId['name'] }}</td>
+              <td>{{ result.score }}</td>
+              <td>
+                <span class="badge" [class.bg-success]="result.passed" [class.bg-danger]="!result.passed">
+                  {{ result.passed ? 'Yes' : 'No' }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="deleteResult(result._id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <div
+              class="d-flex flex-column justify-content-center align-items-center my-4"
+            >
+              <img src="no-exams.png" class="img-fluid no-results" alt="no-found" />
+              <p class="fs-5 text-center my-3 fw-semibold text-muted">
+                No Results Found!
+              </p>
+            </div>
+            }
+        </tbody>
+      </table>
+    }
+  </div>

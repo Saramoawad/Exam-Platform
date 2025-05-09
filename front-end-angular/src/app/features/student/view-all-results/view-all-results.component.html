@@ -1,0 +1,27 @@
+<div class="container mt-4">
+    <h2>My Exam Results</h2>
+  
+    @if (results.length > 0) {
+      <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+          <tr>
+            <th>Exam</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (result of results; track result._id) {
+            <tr>
+              <td>{{ result.examId.name }}</td>
+              <td>{{ result.score }}%</td>
+              <td>{{ result.createdAt}}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="no-results">No results found.</p>
+    }
+  </div>
+  
