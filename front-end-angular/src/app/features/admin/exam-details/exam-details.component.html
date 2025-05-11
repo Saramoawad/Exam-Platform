@@ -68,17 +68,14 @@
             </div>
           </div>
           @if (exam.questions) { @for (question of exam.questions; track
-          question._id) {
+          question._id; let i = $index) {
 
           <div class="questions-div">
             <div
               class="alert alert-light d-flex justify-content-between align-items-center"
             >
               <div>
-                <p class="my-0">{{ question.question }}</p>
-                <sub class="text-muted"
-                  >Created By: {{ question.user?.username }}</sub
-                >
+                <p class="my-0"> <span class="fw-semibold pe-2">Q{{i+1}}.</span> {{ question.question }}</p>
               </div>
               <div class="m-0">
                 <a

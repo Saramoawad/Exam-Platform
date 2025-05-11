@@ -18,8 +18,6 @@ export class EditQuestionComponent implements OnInit {
     choices: { a: '', b: '', c: '', d: '' },
     correctAnswer: 'a',
     difficulty: 1,
-    // exam: { _id: '', name: '' },
-    // user: {  _id: '', firstName: '', lastName: '', username: '', email: '' }
   };
 
   constructor(

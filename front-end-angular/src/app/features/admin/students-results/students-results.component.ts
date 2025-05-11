@@ -17,7 +17,6 @@ export class StudentsResultsComponent implements OnInit {
   isLoading = signal(true);
 
   constructor() {
-    // this.fetchResults();
   }
 
   ngOnInit() {
@@ -31,7 +30,6 @@ export class StudentsResultsComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
-        // this.isLoading.set(false);
       },
     });
   }

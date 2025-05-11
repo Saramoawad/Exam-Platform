@@ -95,13 +95,14 @@ export class EditExamComponent implements OnInit {
     const formData = new FormData();
     const values = this.examForm.value;
 
-    // It checks whether any value in the values object is different from the current form values in this.examForm.
-    // If even one field has changed, hasChanges will be true.
-    // .some() is an array method that returns true if at least one element in the array passes the given test.
-    // For each key, it's comparing:
-    // values[key]: the value passed in or stored earlier (e.g., old data)
-    // this.examForm.getRawValue()[key]: the current value of that field in the form (including disabled fields)
-    // getRawValue() returns all form values, including fields that are disabled.
+    // explain :
+    // It checks whether any value in the values object is different from the current form values in this.examForm
+    // If even one field has changed hasChanges will be true
+    // .some() >> is an array method that returns true if at least one element in the array passes the given test
+    // For each key it's comparing:
+    // values[key] >> the value passed in or stored earlier (e.g. old data)
+    // this.examForm.getRawValue()[key] >> the current value of that field in the form (including disabled fields)
+    // getRawValue() returns all form values including fields that are disabled
     const hasChanges = Object.keys(values).some((key) => {
       console.log(`${values[key]} COMPAREWITH ${this.originalValues[key]}`);
       return values[key] !== this.originalValues[key];

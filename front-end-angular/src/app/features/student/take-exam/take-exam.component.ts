@@ -45,9 +45,7 @@ export class TakeExamComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Save selected answers to localStorage
     localStorage.setItem(`exam-${this.examId}-answers`, JSON.stringify(this.selectedAnswers));
-    // Navigate to SubmitExamComponent
     this.router.navigate(['/student/submit-exam/', this.examId]);
   }
 }

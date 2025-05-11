@@ -122,7 +122,7 @@ exports.submitExam = catchAsync(async (req, res, next) => {
     }
   }
 
-  const marksPerQuestion = 100 / totalQuestions;
+  const marksPerQuestion = exam.totalMarks / totalQuestions;
   let score = 0;
 
   const answerMap = new Map(

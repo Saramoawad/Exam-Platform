@@ -41,18 +41,6 @@
         <label for="exam-id">Exam ID:</label>
         <input id="exam-id" type="text" [(ngModel)]="currentQuestion.exam!._id" name="examId" placeholder="Enter Exam ID" required />
       </div>
-      <!-- <div class="form-group">
-        <label for="exam-title">Exam Title:</label>
-        <input id="exam-title" type="text" [(ngModel)]="currentQuestion.exam!.name" name="examTitle" placeholder="Enter Exam Title" />
-      </div> -->
-      <!-- <div class="form-group visually-hidden">
-        <label for="user-id">User ID:</label>
-        <input id="user-id" type="text" [(ngModel)]="currentQuestion.user!._id" name="userId" placeholder="Enter User ID" required />
-      </div> -->
-      <!-- <div class="form-group">
-        <label for="user-name">User Name:</label>
-        <input id="user-name" type="text" [(ngModel)]="currentQuestion.user!.username" name="userName" placeholder="Enter User Name" />
-      </div> -->
       <div class="form-actions">
         <button type="button" class="save-btn" (click)="saveQuestion()">Save</button>
         <button type="button" class="cancel-btn" (click)="cancelForm()">Cancel</button>

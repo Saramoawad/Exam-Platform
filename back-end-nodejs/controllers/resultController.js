@@ -34,7 +34,7 @@ exports.getResult = catchAsync(async (req, res, next) => {
   const result = await Result.findById(req.params.id)
     .populate("studentId", "firstName lastName username")
     .populate("examId", "name totalMarks passingMarks")
-    .populate("answers.questionId", "question choices"); // تأكد من استرجاع تفاصيل الأسئلة
+    .populate("answers.questionId", "question choices");
   if (!result) {
     return next(new AppError(404, "Result not found"));
   }
@@ -66,23 +66,23 @@ exports.getStudentResults = catchAsync(async (req, res, next) => {
   });
 });
 
-
 exports.getMyAllResults = async (req, res) => {
   try {
     const { studentId } = req.params;
 
-    // Find all results for the student
     const results = await Result.find({ studentId })
-      .populate('examId', 'title') // Populate exam title for better display
-      .select('examId score totalMarks createdAt');
+      .populate("examId", "title")
+      .select("examId score totalMarks createdAt");
 
     if (!results || results.length === 0) {
-      return res.status(404).json({ message: 'No results found for this student' });
+      return res
+        .status(404)
+        .json({ message: "No results found for this student" });
     }
 
     res.status(200).json(results);
   } catch (error) {
-    console.error('Error fetching results:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error("Error fetching results:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

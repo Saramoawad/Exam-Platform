@@ -43,7 +43,6 @@ export class SubmitExamComponent implements OnInit {
     }
   }
 
-  // Getter to check if there are any selected answers
   get hasSelectedAnswers(): boolean {
     return this.selectedAnswers && Object.keys(this.selectedAnswers).length > 0;
   }
@@ -55,12 +54,11 @@ export class SubmitExamComponent implements OnInit {
     }
 
     this.isLoading = true;
-    this.spinner.show(); // Show the spinner
+    this.spinner.show();
 
-    // نحتفظ بنفس هيكل البيانات المتوقع من قبل الخدمة - استخدام 'answer' بدلاً من 'selectedAnswer'
     const answersArray = Object.keys(this.selectedAnswers).map(questionId => ({
       questionId,
-      answer: this.selectedAnswers[questionId]  // استخدام 'answer' كما هو متوقع في الخدمة
+      answer: this.selectedAnswers[questionId]
     }));
 
 
@@ -70,8 +68,6 @@ export class SubmitExamComponent implements OnInit {
           this.isSubmitted = true;
           this.message = response.data.message;
           this.submissionId = response.data.submissionId;
-          // Clear answers from localStorage after submission
-          // localStorage.removeItem(`exam-${this.examId}-answers`);
         }
       },
       error: (err) => {
@@ -80,7 +76,7 @@ export class SubmitExamComponent implements OnInit {
       },
       complete: () => {
         this.isLoading = false;
-        this.spinner.hide(); // Hide the spinner when done
+        this.spinner.hide();
       }
     });
   }

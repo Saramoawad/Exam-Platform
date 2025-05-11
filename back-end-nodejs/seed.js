@@ -16,14 +16,12 @@ mongoose.connect("mongodb://localhost:27017/exam-platform", {
 
 async function seedDatabase() {
   try {
-    // Clear existing data
     await User.deleteMany({});
     await Exam.deleteMany({});
     await Question.deleteMany({});
     await Result.deleteMany({});
     console.log("Cleared existing data");
 
-    // 1. Create Users
     function generateValidUsername() {
       const letters = faker.string.alpha({ length: 1 });
       const rest = faker.string.alphanumeric({ length: 7 });
@@ -37,7 +35,6 @@ async function seedDatabase() {
       return `${name}@${domain}.${tld}`;
     }
 
-    // Create Users
     const users = [];
     for (let i = 0; i < 5; i++) {
       const role = i === 0 ? "teacher" : "student";
@@ -48,7 +45,7 @@ async function seedDatabase() {
         lastName,
         username: generateValidUsername(),
         email: generateValidEmail(),
-        password: "a12345678", // pre-save hook will hash it
+        password: "a12345678",
         role,
         stageLevel: role === "student" ? "High School" : undefined,
       });
@@ -61,7 +58,6 @@ async function seedDatabase() {
     const teacher = users.find((u) => u.role === "teacher");
     const students = users.filter((u) => u.role === "student");
 
-    // 2. Create Exams
     const exams = [];
     for (let i = 0; i < 10; i++) {
       const exam = new Exam({
@@ -77,7 +73,6 @@ async function seedDatabase() {
       console.log(`Created exam: ${exam.name}`);
     }
 
-    // 3. Create Questions
     const questions = [];
     for (const exam of exams) {
       for (let i = 0; i < 10; i++) {
@@ -102,7 +97,6 @@ async function seedDatabase() {
       console.log(`Updated exam ${exam.name} with ${exam.questions.length} questions`);
     }
 
-    // 4. Create Results for each student in each exam
     for (const student of students) {
       for (const exam of exams) {
         const answers = exam.questions.map((qId) => {
@@ -110,7 +104,7 @@ async function seedDatabase() {
           const correct = question.correctAnswer;
           const selected = faker.helpers.arrayElement(["a", "b", "c", "d"]);
           const isCorrect = selected === correct;
-          const marks = isCorrect ? 10 : 0; // 10 marks per correct answer
+          const marks = isCorrect ? 10 : 0;
           return {
             questionId: qId,
             selectedAnswer: selected,
@@ -134,7 +128,7 @@ async function seedDatabase() {
       }
     }
 
-    console.log("✅ Database seeded with fake data.");
+    console.log("Database seeded with fake data");
   } catch (err) {
     console.error("Error seeding database:", err);
   } finally {

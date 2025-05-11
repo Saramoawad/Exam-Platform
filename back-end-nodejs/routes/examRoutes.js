@@ -40,8 +40,8 @@ const upload = multer({
 });
 
 // sara -------------------------
-
 router.post("/:id/submit", examController.submitExam);
+// sara -------------------------
 
 router.get("/", examController.getAllExams);
 

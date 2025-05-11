@@ -1,21 +1,3 @@
-// import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-// import { provideRouter } from '@angular/router';
-// import { routes } from './app.routes';
-// import { provideHttpClient, withInterceptors } from '@angular/common/http';
-// import { authInterceptor } from './core/interceptors/auth.interceptor';
-// import { NgxSpinnerModule } from 'ngx-spinner';
-
-// export const appConfig: ApplicationConfig = {
-//   providers: [
-
-//     provideZoneChangeDetection({ eventCoalescing: true }),
-//     importProvidersFrom(NgxSpinnerModule)
-
-//   ],
-// };
-
-
-
 import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
